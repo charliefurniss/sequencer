@@ -115,13 +115,22 @@ $(document).ready(function() {
 		for (i = 0; i < bufferList.length; i++){
 
 			var channel = {
-			number: i + 1,
-			seqArray: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-			instr: bufferList[i]
-		}
+				number: i + 1,
+				seqArray: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+				instr: bufferList[i]
+			}
 			channelArray.push(channel);
+
+			var seqContainerDiv = '<div class="seqContainer"></div>';
+			
+			$('body').append(seqContainerDiv);
+
+			for (i = 0; i < channel.seqArray.length; i++){
+				var button = '<button class="seqButton" channel="' + channel.number + '" data="' + i + '" value="0" id="ch' + channel.number + '_st' + i +'"></button>';
+				$('.seqContainer').append(button);
+			}
+
 		}
-		console.log(channelArray);
 	}
 
 	function registerSeqButtonClick(){
