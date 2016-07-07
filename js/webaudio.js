@@ -12,23 +12,23 @@ $(document).ready(function() {
 	var loopLength = 2;
 	var seqLength = 4;
 
-	var channelArray = [
-		{
-			number: 1,
-			seqArray: [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
-			instr: ""
-		},
-		{
-			number: 2,
-			seqArray: [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
-			instr: ""
-		},
-		{
-			number: 3,
-			seqArray: [1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0],
-			instr: ""
-		}	
-	]
+	var channelArray = [];
+	// 	{
+	// 		number: 1,
+	// 		seqArray: [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+	// 		instr: ""
+	// 	},
+	// 	{
+	// 		number: 2,
+	// 		seqArray: [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+	// 		instr: ""
+	// 	},
+	// 	{
+	// 		number: 3,
+	// 		seqArray: [1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0],
+	// 		instr: ""
+	// 	}	
+	// ]
 
 	function init() {
 	  // Fix up prefixing
@@ -54,7 +54,7 @@ $(document).ready(function() {
 		  RhythmSample.play(bufferList);
 		});
 		registerSeqButtonClick();
-		setUpSequencer(bufferList);
+		setUpChannels(bufferList);
 	}
 
 	RhythmSample.play = function(bufferList) {
@@ -90,24 +90,38 @@ $(document).ready(function() {
 	  }
 	};
 
-	function setUpSequencer(bufferList){
+	// function setUpSequencer(bufferList){
 
-		for (var j = 0; j < channelArray.length; j++) {
+	// 	for (var j = 0; j < channelArray.length; j++) {
 			
-			var seqArray = channelArray[j].seqArray;
-			var channelNumber = channelArray[j].number;
+	// 		var seqArray = channelArray[j].seqArray;
+	// 		var channelNumber = channelArray[j].number;
 
-			//set each channel's instrument
-			channelArray[j].instr = bufferList[j];
+	// 		//set each channel's instrument
+	// 		channelArray[j].instr = bufferList[j];
 
-		 	for (i = 0; i < seqArray.length; i++){
-		 		var step = i + 1;
-		 		var channelID = '#ch'+ channelNumber + '_st' + step;
-		 		if (seqArray[i] == 1){
-		 			$(channelID).addClass("seqClicked");
-		 		}
-		 	}
+	// 	 	for (i = 0; i < seqArray.length; i++){
+	// 	 		var step = i + 1;
+	// 	 		var channelID = '#ch'+ channelNumber + '_st' + step;
+	// 	 		if (seqArray[i] == 1){
+	// 	 			$(channelID).addClass("seqClicked");
+	// 	 		}
+	// 	 	}
+	// 	}
+	// }
+
+	function setUpChannels(bufferList){
+
+		for (i = 0; i < bufferList.length; i++){
+
+			var channel = {
+			number: i + 1,
+			seqArray: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+			instr: bufferList[i]
 		}
+			channelArray.push(channel);
+		}
+		console.log(channelArray);
 	}
 
 	function registerSeqButtonClick(){
@@ -130,7 +144,7 @@ $(document).ready(function() {
 	      var instr = channelArray[channel - 1].instr;
 
 	      $('#' + click.attr('id')).toggleClass("seqClicked");
-	      playSound(instr, 0)
+	      playSound(instr, 0);
 
 	      if (playBoolean == 1){
 	        $('#' + click.attr('id')).val(0);
