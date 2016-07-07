@@ -2,11 +2,62 @@
 <!doctype html>
 <html>
     <head>
-        <title>Web Audio API</title>
+        <title>DrumMachine</title>
+        <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script src="js/bufferLoader.js"></script>
         <script src="js/webaudio.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/drumMachine.css">
     </head>
     <body>
-        <h1>Welcome to the Web Audio API</h1>
+    	<div class="paramsContainer">
+    		<form>
+    			<label for="bpmForm">BPM</label>
+    			<input id="bpmForm" type="number" min="1" max="200" />
+    			<input type="submit" value="submit BPM"/>
+    		</form>
+    	</div>
+    	<div class="seqContainer">
+    		<button class="seqButton" channel="1" data="1" value="0" id="ch1_st1"></button>
+    		<button class="seqButton" channel="1" data="2" value="0" id="ch1_st2"></button>
+    		<button class="seqButton" channel="1" data="3" value="0" id="ch1_st3"></button>
+    		<button class="seqButton" channel="1" data="4" value="0" id="ch1_st4"></button>
+    		<button class="seqButton" channel="1" data="5" value="0" id="ch1_st5"></button>
+    		<button class="seqButton" channel="1" data="6" value="0" id="ch1_st6"></button>
+    		<button class="seqButton" channel="1" data="7" value="0" id="ch1_st7"></button>
+    		<button class="seqButton" channel="1" data="8" value="0" id="ch1_st8"></button>
+    		<button class="seqButton" channel="1" data="9" value="0" id="ch1_st9"></button>
+    		<button class="seqButton" channel="1" data="10" value="0" id="ch1_st10"></button>
+    		<button class="seqButton" channel="1" data="11" value="0" id="ch1_st11"></button>
+    		<button class="seqButton" channel="1" data="12" value="0" id="ch1_st12"></button>
+    		<button class="seqButton" channel="1" data="13" value="0" id="ch1_st13"></button>
+    		<button class="seqButton" channel="1" data="14" value="0" id="ch1_st14"></button>
+    		<button class="seqButton" channel="1" data="15" value="0" id="ch1_st15"></button>
+    		<button class="seqButton" channel="1" data="16" value="0" id="ch1_st16"></button>
+    		<br>
+    		<button class="seqButton" channel="1" data="17" value="0" id="ch1_st17"></button>
+    		<button class="seqButton" channel="1" data="18" value="0" id="ch1_st18"></button>
+    		<button class="seqButton" channel="1" data="19" value="0" id="ch1_st19"></button>
+    		<button class="seqButton" channel="1" data="20" value="0" id="ch1_st20"></button>
+    		<button class="seqButton" channel="1" data="21" value="0" id="ch1_st21"></button>
+    		<button class="seqButton" channel="1" data="22" value="0" id="ch1_st22"></button>
+    		<button class="seqButton" channel="1" data="23" value="0" id="ch1_st23"></button>
+    		<button class="seqButton" channel="1" data="24" value="0" id="ch1_st24"></button>
+    		<button class="seqButton" channel="1" data="25" value="0" id="ch1_st25"></button>
+    		<button class="seqButton" channel="1" data="26" value="0" id="ch1_st26"></button>
+    		<button class="seqButton" channel="1" data="27" value="0" id="ch1_st27"></button>
+    		<button class="seqButton" channel="1" data="28" value="0" id="ch1_st28"></button>
+    		<button class="seqButton" channel="1" data="29" value="0" id="ch1_st29"></button>
+    		<button class="seqButton" channel="1" data="30" value="0" id="ch1_st30"></button>
+    		<button class="seqButton" channel="1" data="31" value="0" id="ch1_st31"></button>
+    		<button class="seqButton" channel="1" data="32" value="0" id="ch1_st32"></button>
+    	</div>
+
+    	<div class="controlButtonContainer">
+    		<input type="button" class="controlButton" value="play" id="playButton"></button>
+    	</div>
+    	<div class="controlButtonContainer">
+    		<input type="button" class="controlButton" value="stop" id="stopButton"></button>
+    	</div>	
     </body>
+</html>
 </html> 

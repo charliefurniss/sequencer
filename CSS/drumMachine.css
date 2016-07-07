@@ -1,0 +1,64 @@
+body {
+
+	background: gray;
+
+}
+
+p {
+	height: 50px;
+	width: 308px;
+	margin: 0 auto;
+	margin-top: 50px;
+	font-size: 16px;
+	background-color: #EA66E5;
+	font-family: 'Oxygen', sans-serif;
+	font-size: 16px;
+	text-align: center;
+}
+
+#allBoxes {
+	width: 420px;
+	height: 420px;
+	margin: 80px auto;
+	padding: 0;
+}
+
+.controlButtonContainer {
+	width: 100%;
+}
+
+.controlbutton {
+	display: block;
+	margin-bottom: 5px;
+	font-family: 'Oxygen', sans-serif;
+	font-size: 16px;
+	border: none;
+	z-index: 2;
+	height: 50px;
+	width: 100%;
+}
+
+.seqButton {
+	background-color: #EA66E5;
+	height: 50px;
+	width: 50px;
+	position: relative;
+	margin-bottom: 5px;
+	font-family: 'Oxygen', sans-serif;
+	font-size: 16px;
+	border: none;
+	z-index: 2;
+}
+
+.seqClicked {
+	background-color: red;
+}
+
+button:focus {
+
+	outline: none;
+}
+
+.row {
+	text-align: center;
+}
