@@ -14,7 +14,8 @@ function init() {
     [
       'audio/Kick909.wav',
       'audio/Snare909.wav',
-      'audio/MA808.wav'
+      'audio/MA808.wav',
+      'audio/TomSim1.wav'
     ],
     RhythmSample.play
    );
@@ -36,27 +37,42 @@ RhythmSample.play = function(bufferList) {
   var kick = bufferList[0];
   var snare = bufferList[1];
   var hihat = bufferList[2];
+  var wave = bufferList[3];
 
   // We'll start playing the rhythm 100 milliseconds from "now"
   var startTime = context.currentTime + 0.100;
-  var tempo = 80; // BPM (beats per minute)
-  var eighthNoteTime = (60 / tempo) / 2;
+  var tempo = 110; // BPM (beats per minute)
+  var sixteenthNoteTime = (60 / tempo) / 4;
 
-  // Play 2 bars of the following:
-  for (var bar = 0; bar < 2; bar++) {
-    var time = startTime + bar * 8 * eighthNoteTime;
+  var loopLength = 2;
+  var seqLength = 4;
+
+  for (var seq = 0; seq < seqLength; seq=seq+loopLength) {
+
+    var time = startTime + seq * 16 * sixteenthNoteTime;
+    
     // Play the bass (kick) drum on beats 1, 5
-    playSound(kick, time);
-    playSound(kick, time + 4 * eighthNoteTime);
+    playSound(kick, time + 0 * sixteenthNoteTime)
+    playSound(kick, time + 4 * sixteenthNoteTime);
+    playSound(kick, time + 8 * sixteenthNoteTime);
+    playSound(kick, time + 11 * sixteenthNoteTime);
+    playSound(kick, time + 16 * sixteenthNoteTime);
+    playSound(kick, time + 20 * sixteenthNoteTime);
+    playSound(kick, time + 24 * sixteenthNoteTime);
+    playSound(kick, time + 28 * sixteenthNoteTime);
 
     // Play the snare drum on beats 3, 7
-    playSound(snare, time + 2 * eighthNoteTime);
-    playSound(snare, time + 6 * eighthNoteTime);
+    playSound(snare, time + 4 * sixteenthNoteTime);
+    playSound(snare, time + 12 * sixteenthNoteTime);
+    playSound(snare, time + 20 * sixteenthNoteTime);
+    playSound(snare, time + 28 * sixteenthNoteTime);
 
-    // Play the hi-hat every eighthh note.
-    for (var i = 0; i < 8; ++i) {
-      playSound(hihat, time + i * eighthNoteTime);
+    // Play the hi-hat every eighth note.
+    for (var i = 0; i < 32; i=i+2) {
+      playSound(hihat, time + i * sixteenthNoteTime);
     }
+
+    // playSound(wave, time);
   }
 };
 
