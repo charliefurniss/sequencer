@@ -53,6 +53,8 @@ $(document).ready(function() {
 		$('#playButton').click(function(){
 		  RhythmSample.play(bufferList);
 		});
+		registerSeqButtonClick();
+		setUpSequencer(bufferList);
 	}
 
 	RhythmSample.play = function(bufferList) {
@@ -71,27 +73,32 @@ $(document).ready(function() {
 
 	  var startTime = context.currentTime + 0.100;
 
-	  for (var seq = 0; seq < seqLength; seq=seq+loopLength) {
+	  for (var seq = 0; seq < seqLength; seq = seq + loopLength) {
 
 	    var time = startTime + seq * 16 * sixteenthNoteTime;
 	    
 	    for (i = 0; i < channelArray.length; i++){
-	    	channelArray[i].instr = bufferList[i];
+	    	
 	    	for (var step=0; step < channelArray[i].seqArray.length; step++){
+	    		//play sound on steps with value of 1
 	    		if (channelArray[i].seqArray[step] == 1){
 	    			playSound(channelArray[i].instr, time + step * sixteenthNoteTime);
 	    		}    
+	    	
 	    	}
 	    }
 	  }
 	};
 
-	function setUpSequencer(){
+	function setUpSequencer(bufferList){
 
 		for (var j = 0; j < channelArray.length; j++) {
 			
 			var seqArray = channelArray[j].seqArray;
 			var channelNumber = channelArray[j].number;
+
+			//set each channel's instrument
+			channelArray[j].instr = bufferList[j];
 
 		 	for (i = 0; i < seqArray.length; i++){
 		 		var step = i + 1;
@@ -99,19 +106,32 @@ $(document).ready(function() {
 		 		if (seqArray[i] == 1){
 		 			$(channelID).addClass("seqClicked");
 		 		}
-		 	}   
+		 	}
 		}
 	}
 
 	function registerSeqButtonClick(){
+
+		function playSound(buffer, time) {
+		  var source = context.createBufferSource();
+		  source.buffer = buffer;
+		  source.connect(context.destination);
+		  if (!source.start)
+		    source.start = source.noteOn;
+		  source.start(time);
+		}
+
 	  $('button').each(function(){
 	    $(this).on('click', function(){
 	      var click = $(this);
 	      var step = click.attr('data') - 1;
 	      var channel = click.attr('channel');
 	      var playBoolean = click.attr('value');
+	      var instr = channelArray[channel - 1].instr;
 
 	      $('#' + click.attr('id')).toggleClass("seqClicked");
+	      playSound(instr, 0)
+
 	      if (playBoolean == 1){
 	        $('#' + click.attr('id')).val(0);
 	      } else {
@@ -127,8 +147,7 @@ $(document).ready(function() {
 	    });
 	  })
 	}
-	registerSeqButtonClick();
-	setUpSequencer();
+
 });
 
 
