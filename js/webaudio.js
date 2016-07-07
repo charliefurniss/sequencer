@@ -13,6 +13,7 @@ $(document).ready(function() {
 	var seqLength = 4;
 
 	var channelArray = [];
+
 	// 	{
 	// 		number: 1,
 	// 		seqArray: [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
@@ -53,7 +54,7 @@ $(document).ready(function() {
 		$('#playButton').click(function(){
 		  RhythmSample.play(bufferList);
 		});
-		registerSeqButtonClick();
+		// registerSeqButtonClick();
 		setUpChannels(bufferList);
 	}
 
@@ -121,16 +122,20 @@ $(document).ready(function() {
 			}
 			channelArray.push(channel);
 
-			var seqContainerDiv = '<div class="seqContainer"></div>';
+			var seqContainerDiv = '<div class="seqContainer" id="channel' + channel.number + '"></div>';
 			
 			$('body').append(seqContainerDiv);
 
-			for (i = 0; i < channel.seqArray.length; i++){
-				var button = '<button class="seqButton" channel="' + channel.number + '" data="' + i + '" value="0" id="ch' + channel.number + '_st' + i +'"></button>';
-				$('.seqContainer').append(button);
+			for (j = 0; j < channel.seqArray.length; j++){
+				var step = j + 1;
+				var button = '<button class="seqButton" channel="' + channel.number + '" data="' + step + '" value="0" id="ch' + channel.number + '_st' + step +'"></button>';
+				$('#channel' + channel.number).append(button);
 			}
 
 		}
+
+		registerSeqButtonClick();
+
 	}
 
 	function registerSeqButtonClick(){
