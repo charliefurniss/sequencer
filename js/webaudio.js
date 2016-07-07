@@ -47,24 +47,30 @@ RhythmSample.play = function(bufferList) {
   var loopLength = 2;
   var seqLength = 4;
 
-  var kickArray = [0, 1, 4, 8, 12, 16, 20, 24, 28];
-  var snareArray = [4, 12, 20, 28];
-  var hihatArray = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 25, 26, 28, 30];
+  var kickArray = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0];
+  var snareArray = [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0];
+  var hihatArray = [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0];
 
   for (var seq = 0; seq < seqLength; seq=seq+loopLength) {
 
     var time = startTime + seq * 16 * sixteenthNoteTime;
     
     for (var kickSeq=0; kickSeq < kickArray.length; kickSeq++){
-    	playSound(kick, time + kickArray[kickSeq] * sixteenthNoteTime);	
+    	if (kickArray[kickSeq] == 1){
+    		playSound(kick, time + kickSeq * sixteenthNoteTime);
+    	}	
     }
     
     for (var snareSeq=0; snareSeq < snareArray.length; snareSeq++){
-    	playSound(snare, time + snareArray[snareSeq] * sixteenthNoteTime);	
+    	if (snareArray[snareSeq] == 1){
+    		playSound(snare, time + snareSeq * sixteenthNoteTime);
+    	}	
     }
 
     for (var hihatSeq=0; hihatSeq < hihatArray.length; hihatSeq++){
-    	playSound(hihat, time + hihatArray[hihatSeq] * sixteenthNoteTime);	
+    	if (hihatArray[hihatSeq] == 1){
+    		playSound(hihat, time + hihatSeq * sixteenthNoteTime);
+    	}    
     }
 
     // playSound(wave, time);
