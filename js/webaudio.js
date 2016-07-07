@@ -12,9 +12,20 @@ $(document).ready(function() {
 	var loopLength = 2;
 	var seqLength = 4;
 
-	var kickArray = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0];
-	var snareArray = [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0];
-	var hihatArray = [1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0];
+	var channelArray = [
+		{
+			number: 1,
+			seqArray: [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]
+		},
+		{
+			number: 2,
+			seqArray: [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0]
+		},
+		{
+			number: 3,
+			seqArray: [1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0]
+		}	
+	]
 
 	function init() {
 	  // Fix up prefixing
@@ -66,21 +77,21 @@ $(document).ready(function() {
 
 	    var time = startTime + seq * 16 * sixteenthNoteTime;
 	    
-	    for (var kickSeq=0; kickSeq < kickArray.length; kickSeq++){
-	    	if (kickArray[kickSeq] == 1){
-	    		playSound(kick, time + kickSeq * sixteenthNoteTime);
+	    for (var channelOneSeq=0; channelOneSeq < channelArray[0].seqArray.length; channelOneSeq++){
+	    	if (channelArray[0].seqArray[channelOneSeq] == 1){
+	    		playSound(kick, time + channelOneSeq * sixteenthNoteTime);
 	    	}	
 	    }
 	    
-	    for (var snareSeq=0; snareSeq < snareArray.length; snareSeq++){
-	    	if (snareArray[snareSeq] == 1){
-	    		playSound(snare, time + snareSeq * sixteenthNoteTime);
+	    for (var channelTwoSeq=0; channelTwoSeq < channelArray[1].seqArray.length; channelTwoSeq++){
+	    	if (channelArray[1].seqArray[channelTwoSeq] == 1){
+	    		playSound(snare, time + channelTwoSeq * sixteenthNoteTime);
 	    	}	
 	    }
 
-	    for (var hihatSeq=0; hihatSeq < hihatArray.length; hihatSeq++){
-	    	if (hihatArray[hihatSeq] == 1){
-	    		playSound(hihat, time + hihatSeq * sixteenthNoteTime);
+	    for (var channelThreeSeq=0; channelThreeSeq < channelArray[2].seqArray.length; channelThreeSeq++){
+	    	if (channelArray[2].seqArray[channelThreeSeq] == 1){
+	    		playSound(hihat, time + channelThreeSeq * sixteenthNoteTime);
 	    	}    
 	    }
 
@@ -89,11 +100,19 @@ $(document).ready(function() {
 	};
 
 	function setUpSequencer(){
-		for (i = 0; i < kickArray.length; i++){
-			var step = i + 1;
-			if (kickArray[i] == 1){
-				$('#ch1_st' + step).addClass("seqClicked");
-			}
+
+		for (var j = 0; j < channelArray.length; j++) {
+			
+			var seqArray = channelArray[j].seqArray;
+			var channelNumber = channelArray[j].number;
+
+		 	for (i = 0; i < seqArray.length; i++){
+		 		var step = i + 1;
+		 		var channelID = '#ch'+ channelNumber + '_st' + step;
+		 		if (seqArray[i] == 1){
+		 			$(channelID).addClass("seqClicked");
+		 		}
+		 	}   
 		}
 	}
 
@@ -112,18 +131,19 @@ $(document).ready(function() {
 	        $('#' + click.attr('id')).val(1);
 	      }
 
-	      if (kickArray[step] == 0) {
-	        kickArray[step] = 1;
+	      if (channelArray[channel - 1].seqArray[step] == 0) {
+	        channelArray[channel - 1].seqArray[step] = 1;
 	      } else {
-	        kickArray[step] = 0;
+	        channelArray[channel - 1].seqArray[step] = 0;
 	      }
+
+	      console.log(channelArray);
+
 	    });
 	  })
 	}
-
 	registerSeqButtonClick();
 	setUpSequencer();
-
 });
 
 
