@@ -15,15 +15,18 @@ $(document).ready(function() {
 	var channelArray = [
 		{
 			number: 1,
-			seqArray: [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]
+			seqArray: [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+			instr: ""
 		},
 		{
 			number: 2,
-			seqArray: [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0]
+			seqArray: [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+			instr: ""
 		},
 		{
 			number: 3,
-			seqArray: [1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0]
+			seqArray: [1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0],
+			instr: ""
 		}	
 	]
 
@@ -66,36 +69,20 @@ $(document).ready(function() {
 	    });
 	  }
 
-	  var kick = bufferList[0];
-	  var snare = bufferList[1];
-	  var hihat = bufferList[2];
-	  var wave = bufferList[3];
-
 	  var startTime = context.currentTime + 0.100;
 
 	  for (var seq = 0; seq < seqLength; seq=seq+loopLength) {
 
 	    var time = startTime + seq * 16 * sixteenthNoteTime;
 	    
-	    for (var channelOneSeq=0; channelOneSeq < channelArray[0].seqArray.length; channelOneSeq++){
-	    	if (channelArray[0].seqArray[channelOneSeq] == 1){
-	    		playSound(kick, time + channelOneSeq * sixteenthNoteTime);
-	    	}	
+	    for (i = 0; i < channelArray.length; i++){
+	    	channelArray[i].instr = bufferList[i];
+	    	for (var step=0; step < channelArray[i].seqArray.length; step++){
+	    		if (channelArray[i].seqArray[step] == 1){
+	    			playSound(channelArray[i].instr, time + step * sixteenthNoteTime);
+	    		}    
+	    	}
 	    }
-	    
-	    for (var channelTwoSeq=0; channelTwoSeq < channelArray[1].seqArray.length; channelTwoSeq++){
-	    	if (channelArray[1].seqArray[channelTwoSeq] == 1){
-	    		playSound(snare, time + channelTwoSeq * sixteenthNoteTime);
-	    	}	
-	    }
-
-	    for (var channelThreeSeq=0; channelThreeSeq < channelArray[2].seqArray.length; channelThreeSeq++){
-	    	if (channelArray[2].seqArray[channelThreeSeq] == 1){
-	    		playSound(hihat, time + channelThreeSeq * sixteenthNoteTime);
-	    	}    
-	    }
-
-	    // playSound(wave, time);
 	  }
 	};
 
@@ -136,8 +123,6 @@ $(document).ready(function() {
 	      } else {
 	        channelArray[channel - 1].seqArray[step] = 0;
 	      }
-
-	      console.log(channelArray);
 
 	    });
 	  })
