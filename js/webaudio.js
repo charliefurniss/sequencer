@@ -47,29 +47,24 @@ RhythmSample.play = function(bufferList) {
   var loopLength = 2;
   var seqLength = 4;
 
+  var kickArray = [0, 1, 4, 8, 12, 16, 20, 24, 28];
+  var snareArray = [4, 12, 20, 28];
+  var hihatArray = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 25, 26, 28, 30];
+
   for (var seq = 0; seq < seqLength; seq=seq+loopLength) {
 
     var time = startTime + seq * 16 * sixteenthNoteTime;
     
-    // Play the bass (kick) drum on beats 1, 5
-    playSound(kick, time + 0 * sixteenthNoteTime)
-    playSound(kick, time + 4 * sixteenthNoteTime);
-    playSound(kick, time + 8 * sixteenthNoteTime);
-    playSound(kick, time + 11 * sixteenthNoteTime);
-    playSound(kick, time + 16 * sixteenthNoteTime);
-    playSound(kick, time + 20 * sixteenthNoteTime);
-    playSound(kick, time + 24 * sixteenthNoteTime);
-    playSound(kick, time + 28 * sixteenthNoteTime);
+    for (var kickSeq=0; kickSeq < kickArray.length; kickSeq++){
+    	playSound(kick, time + kickArray[kickSeq] * sixteenthNoteTime);	
+    }
+    
+    for (var snareSeq=0; snareSeq < snareArray.length; snareSeq++){
+    	playSound(snare, time + snareArray[snareSeq] * sixteenthNoteTime);	
+    }
 
-    // Play the snare drum on beats 3, 7
-    playSound(snare, time + 4 * sixteenthNoteTime);
-    playSound(snare, time + 12 * sixteenthNoteTime);
-    playSound(snare, time + 20 * sixteenthNoteTime);
-    playSound(snare, time + 28 * sixteenthNoteTime);
-
-    // Play the hi-hat every eighth note.
-    for (var i = 0; i < 32; i=i+2) {
-      playSound(hihat, time + i * sixteenthNoteTime);
+    for (var hihatSeq=0; hihatSeq < hihatArray.length; hihatSeq++){
+    	playSound(hihat, time + hihatArray[hihatSeq] * sixteenthNoteTime);	
     }
 
     // playSound(wave, time);
