@@ -42,7 +42,10 @@ $(document).ready(function() {
 	      'audio/Kick909.wav',
 	      'audio/Snare909.wav',
 	      'audio/MA808.wav',
-	      'audio/TomSim1.wav'
+	      'audio/TomSim1.wav',
+	      'audio/TomSim2.wav',
+	      'audio/TomSim3.wav',
+	      'audio/Clave808.wav'
 	    ],
 	    setUpStart
 	   );
@@ -125,6 +128,7 @@ $(document).ready(function() {
 			var seqContainerDiv = '<div class="seqContainer" id="channel' + channel.number + '"></div>';
 			
 			$('body').append(seqContainerDiv);
+			$('#channel' + channel.number).append(channel.number + " ");
 
 			for (j = 0; j < channel.seqArray.length; j++){
 				var step = j + 1;
