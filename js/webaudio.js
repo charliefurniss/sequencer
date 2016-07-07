@@ -6,6 +6,16 @@ $(document).ready(function() {
 	var RhythmSample = {
 	};
 
+	var tempo = 110; // BPM (beats per minute)
+	var sixteenthNoteTime = (60 / tempo) / 4;
+
+	var loopLength = 2;
+	var seqLength = 4;
+
+	var kickArray = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0];
+	var snareArray = [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0];
+	var hihatArray = [1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0];
+
 	function init() {
 	  // Fix up prefixing
 	  window.AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -50,17 +60,7 @@ $(document).ready(function() {
 	  var hihat = bufferList[2];
 	  var wave = bufferList[3];
 
-	  // We'll start playing the rhythm 100 milliseconds from "now"
 	  var startTime = context.currentTime + 0.100;
-	  var tempo = 110; // BPM (beats per minute)
-	  var sixteenthNoteTime = (60 / tempo) / 4;
-
-	  var loopLength = 2;
-	  var seqLength = 4;
-
-	  var kickArray = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0];
-	  var snareArray = [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0];
-	  var hihatArray = [1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0];
 
 	  for (var seq = 0; seq < seqLength; seq=seq+loopLength) {
 
@@ -87,6 +87,42 @@ $(document).ready(function() {
 	    // playSound(wave, time);
 	  }
 	};
+
+	function setUpSequencer(){
+		for (i = 0; i < kickArray.length; i++){
+			var step = i + 1;
+			if (kickArray[i] == 1){
+				$('#ch1_st' + step).addClass("seqClicked");
+			}
+		}
+	}
+
+	function registerSeqButtonClick(){
+	  $('button').each(function(){
+	    $(this).on('click', function(){
+	      var click = $(this);
+	      var step = click.attr('data') - 1;
+	      var channel = click.attr('channel');
+	      var playBoolean = click.attr('value');
+
+	      $('#' + click.attr('id')).toggleClass("seqClicked");
+	      if (playBoolean == 1){
+	        $('#' + click.attr('id')).val(0);
+	      } else {
+	        $('#' + click.attr('id')).val(1);
+	      }
+
+	      if (kickArray[step] == 0) {
+	        kickArray[step] = 1;
+	      } else {
+	        kickArray[step] = 0;
+	      }
+	    });
+	  })
+	}
+
+	registerSeqButtonClick();
+	setUpSequencer();
 
 });
 
