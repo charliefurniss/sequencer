@@ -7,7 +7,7 @@ $(document).ready(function() {
 	var sequencer;
 	var channelArray;	
 	
-	var sequence;
+	var rhythm;
 	var config = new Config();
 
 	function init() {
@@ -15,7 +15,7 @@ $(document).ready(function() {
 		context	= new Context();
 		context = context.context;
 		sequencer = new Sequencer(context);
-		sequence = new Sequence(context);
+		rhythm = new Rhythm(context);
 		channelArray = sequencer.channelArray;
 
 	  bufferLoader = new BufferLoader(
@@ -37,7 +37,7 @@ $(document).ready(function() {
 
 	function setUp(bufferList){
 		$('#playButton').click(function(){
-		  sequence.play(bufferList, config, channelArray);
+		  rhythm.play(bufferList, config, channelArray);
 		});
 		sequencer.setUpChannels(bufferList);
 		sequencer.registerSeqButtonClick();

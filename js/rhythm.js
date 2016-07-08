@@ -1,4 +1,4 @@
-var Sequence = function(context){
+var Rhythm = function(context){
 
   this.play = function(bufferList, config, channelArray) {
 
