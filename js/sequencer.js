@@ -1,6 +1,8 @@
 var Sequencer = function(context) {
 
-	this.channelArray = [];
+	var channelArray = [];
+
+	this.channelArray = channelArray;
 
 	this.setUpChannels = function(bufferList){
 		
@@ -11,7 +13,7 @@ var Sequencer = function(context) {
 				instr: bufferList[i]
 			}
 
-			this.channelArray.push(channel);
+			channelArray.push(channel);
 
 			var seqContainerDiv = '<div class="seqContainer" id="channel' + channel.number + '"></div>';
 			
@@ -24,7 +26,43 @@ var Sequencer = function(context) {
 				$('#channel' + channel.number).append(button);
 			}
 		}
-	
 	}
 
+	this.registerSeqButtonClick = function(){
+
+		function playSound(buffer, time) {
+		  var source = context.createBufferSource();
+		  source.buffer = buffer;
+		  source.connect(context.destination);
+		  if (!source.start)
+		    source.start = source.noteOn;
+		  source.start(time);
+		}
+
+	  $('button').each(function(){
+	    $(this).on('click', function(){
+	      var click = $(this);
+	      var step = click.attr('data') - 1;
+	      var channel = click.attr('channel');
+	      var playBoolean = click.attr('value');
+	      var instr = channelArray[channel - 1].instr;
+
+	      $('#' + click.attr('id')).toggleClass("seqClicked");
+	      playSound(instr, 0);
+
+	      if (playBoolean == 1){
+	        $('#' + click.attr('id')).val(0);
+	      } else {
+	        $('#' + click.attr('id')).val(1);
+	      }
+
+	      if (channelArray[channel - 1].seqArray[step] == 0) {
+	        channelArray[channel - 1].seqArray[step] = 1;
+	      } else {
+	        channelArray[channel - 1].seqArray[step] = 0;
+	      }
+
+	    });
+	  })
+	}
 }
