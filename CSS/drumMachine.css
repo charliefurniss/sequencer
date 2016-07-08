@@ -40,10 +40,10 @@ p {
 
 .seqButton {
 	background-color: #EA66E5;
-	height: 20px;
-	width: 20px;
+	height: 10px;
+	width: 5px;
 	position: relative;
-	margin: 3px;
+	margin: 2px;
 	font-family: 'Oxygen', sans-serif;
 	font-size: 16px;
 	border: none;

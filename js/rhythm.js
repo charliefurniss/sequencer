@@ -2,6 +2,8 @@ var Rhythm = function(context){
 
   this.play = function(bufferList, config, channelArray) {
 
+    var loop;
+
     function playSound(buffer, time) {
       var source = context.createBufferSource();
       source.buffer = buffer;
@@ -16,7 +18,15 @@ var Rhythm = function(context){
 
     var startTime = context.currentTime + 0.100;
 
-    for (var seq = 0; seq < 1; seq++) {
+    //establish loop or not
+
+    if (config.loop){
+      loop = 128;
+    } else {
+      loop = 1;
+    }
+
+    for (var seq = 0; seq < loop; seq++) {
       var time = startTime + seq * config.seqLength * config.sixteenthNoteTime;
       for (i = 0; i < channelArray.length; i++){
       	for (var step=0; step < channelArray[i].seqArray.length; step++){
