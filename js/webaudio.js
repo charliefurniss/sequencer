@@ -5,6 +5,7 @@ $(document).ready(function() {
 	var bufferLoader;
 	var RhythmSample = {
 	};
+	var sequencer;
 
 	var tempo = 110; // BPM (beats per minute)
 	var sixteenthNoteTime = (60 / tempo) / 4;
@@ -12,29 +13,14 @@ $(document).ready(function() {
 	var loopLength = 2;
 	var seqLength = 4;
 
-	var channelArray = [];
-
-	// 	{
-	// 		number: 1,
-	// 		seqArray: [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
-	// 		instr: ""
-	// 	},
-	// 	{
-	// 		number: 2,
-	// 		seqArray: [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
-	// 		instr: ""
-	// 	},
-	// 	{
-	// 		number: 3,
-	// 		seqArray: [1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0],
-	// 		instr: ""
-	// 	}	
-	// ]
+	var channelArray;
 
 	function init() {
-	  // Fix up prefixing
-	  window.AudioContext = window.AudioContext || window.webkitAudioContext;
-	  context = new AudioContext();
+
+		context	= new Context();
+		context = context.context;
+		sequencer = new Sequencer(context);
+		channelArray = sequencer.channelArray;
 
 	  bufferLoader = new BufferLoader(
 	    context,
@@ -57,8 +43,8 @@ $(document).ready(function() {
 		$('#playButton').click(function(){
 		  RhythmSample.play(bufferList);
 		});
-		// registerSeqButtonClick();
-		setUpChannels(bufferList);
+		sequencer.setUpChannels(bufferList);
+		registerSeqButtonClick();
 	}
 
 	RhythmSample.play = function(bufferList) {
@@ -78,69 +64,17 @@ $(document).ready(function() {
 	  var startTime = context.currentTime + 0.100;
 
 	  for (var seq = 0; seq < seqLength; seq = seq + loopLength) {
-
 	    var time = startTime + seq * 16 * sixteenthNoteTime;
-	    
 	    for (i = 0; i < channelArray.length; i++){
-	    	
 	    	for (var step=0; step < channelArray[i].seqArray.length; step++){
 	    		//play sound on steps with value of 1
 	    		if (channelArray[i].seqArray[step] == 1){
 	    			playSound(channelArray[i].instr, time + step * sixteenthNoteTime);
-	    		}    
-	    	
+	    		}
 	    	}
 	    }
 	  }
 	};
-
-	// function setUpSequencer(bufferList){
-
-	// 	for (var j = 0; j < channelArray.length; j++) {
-			
-	// 		var seqArray = channelArray[j].seqArray;
-	// 		var channelNumber = channelArray[j].number;
-
-	// 		//set each channel's instrument
-	// 		channelArray[j].instr = bufferList[j];
-
-	// 	 	for (i = 0; i < seqArray.length; i++){
-	// 	 		var step = i + 1;
-	// 	 		var channelID = '#ch'+ channelNumber + '_st' + step;
-	// 	 		if (seqArray[i] == 1){
-	// 	 			$(channelID).addClass("seqClicked");
-	// 	 		}
-	// 	 	}
-	// 	}
-	// }
-
-	function setUpChannels(bufferList){
-
-		for (i = 0; i < bufferList.length; i++){
-
-			var channel = {
-				number: i + 1,
-				seqArray: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-				instr: bufferList[i]
-			}
-			channelArray.push(channel);
-
-			var seqContainerDiv = '<div class="seqContainer" id="channel' + channel.number + '"></div>';
-			
-			$('body').append(seqContainerDiv);
-			$('#channel' + channel.number).append(channel.number + " ");
-
-			for (j = 0; j < channel.seqArray.length; j++){
-				var step = j + 1;
-				var button = '<button class="seqButton" channel="' + channel.number + '" data="' + step + '" value="0" id="ch' + channel.number + '_st' + step +'"></button>';
-				$('#channel' + channel.number).append(button);
-			}
-
-		}
-
-		registerSeqButtonClick();
-
-	}
 
 	function registerSeqButtonClick(){
 
@@ -179,6 +113,26 @@ $(document).ready(function() {
 	    });
 	  })
 	}
+
+	// function setUpSequencer(bufferList){
+
+	// 	for (var j = 0; j < channelArray.length; j++) {
+			
+	// 		var seqArray = channelArray[j].seqArray;
+	// 		var channelNumber = channelArray[j].number;
+
+	// 		//set each channel's instrument
+	// 		channelArray[j].instr = bufferList[j];
+
+	// 	 	for (i = 0; i < seqArray.length; i++){
+	// 	 		var step = i + 1;
+	// 	 		var channelID = '#ch'+ channelNumber + '_st' + step;
+	// 	 		if (seqArray[i] == 1){
+	// 	 			$(channelID).addClass("seqClicked");
+	// 	 		}
+	// 	 	}
+	// 	}
+	// }
 
 });
 
