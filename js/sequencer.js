@@ -4,12 +4,19 @@ var Sequencer = function(context) {
 
 	this.channelArray = channelArray;
 
-	this.setUpChannels = function(bufferList){
-		
+	this.setUpChannels = function(bufferList, config){
+
 		for (i = 0; i < bufferList.length; i++){
+
+			var emptySeqArray = [];
+
+			for (k = 0; k < config.seqLength; k++){
+				emptySeqArray.push(0);
+			}
+
 			var channel = {
 				number: i + 1,
-				seqArray: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+				seqArray: emptySeqArray,
 				instr: bufferList[i]
 			}
 

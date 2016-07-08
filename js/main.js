@@ -39,7 +39,7 @@ $(document).ready(function() {
 		$('#playButton').click(function(){
 		  rhythm.play(bufferList, config, channelArray);
 		});
-		sequencer.setUpChannels(bufferList);
+		sequencer.setUpChannels(bufferList, config);
 		sequencer.registerSeqButtonClick();
 	}
 
