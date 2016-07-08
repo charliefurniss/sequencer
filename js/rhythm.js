@@ -16,8 +16,8 @@ var Rhythm = function(context){
 
     var startTime = context.currentTime + 0.100;
 
-    for (var seq = 0; seq < config.seqLength; seq = seq + config.loopLength) {
-      var time = startTime + seq * 16 * config.sixteenthNoteTime;
+    for (var seq = 0; seq < 1; seq++) {
+      var time = startTime + seq * config.seqLength * config.sixteenthNoteTime;
       for (i = 0; i < channelArray.length; i++){
       	for (var step=0; step < channelArray[i].seqArray.length; step++){
       		//play sound on steps with value of 1
