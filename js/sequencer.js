@@ -8,30 +8,34 @@ var Sequencer = function(context) {
 
 		for (i = 0; i < bufferList.length; i++){
 
+			//create sequence array based on config.seqLength variable
 			var emptySeqArray = [];
-
 			for (k = 0; k < config.seqLength; k++){
 				emptySeqArray.push(0);
 			}
-
+			//create channel
 			var channel = {
 				number: i + 1,
 				seqArray: emptySeqArray,
 				instr: bufferList[i]
 			}
-
+			//push channel object into channelArray
 			channelArray.push(channel);
+			//using channel info to create HTML elements on page
+			createChannelHTML(channel);
+		}
+	}
 
-			var seqContainerDiv = '<div class="seqContainer" id="channel' + channel.number + '"></div>';
-			
-			$('body').append(seqContainerDiv);
-			$('#channel' + channel.number).append(channel.number + " ");
+	function createChannelHTML(channel){
+		var seqContainerDiv = '<div class="seqContainer" id="channel' + channel.number + '"></div>';
+		
+		$('body').append(seqContainerDiv);
+		$('#channel' + channel.number).append(channel.number + " ");
 
-			for (j = 0; j < channel.seqArray.length; j++){
-				var step = j + 1;
-				var button = '<button class="seqButton" channel="' + channel.number + '" data="' + step + '" value="0" id="ch' + channel.number + '_st' + step +'"></button>';
-				$('#channel' + channel.number).append(button);
-			}
+		for (j = 0; j < channel.seqArray.length; j++){
+			var step = j + 1;
+			var button = '<button class="seqButton" channel="' + channel.number + '" data="' + step + '" value="0" id="ch' + channel.number + '_st' + step +'"></button>';
+			$('#channel' + channel.number).append(button);
 		}
 	}
 
