@@ -18,7 +18,7 @@ var Sequencer = function(context) {
 				number: i + 1,
 				seqArray: emptySeqArray,
 				instr: bufferList[i],
-				gain: 1,
+				gain: 0.67,
 				solo: false,
 				mute: false
 			}
@@ -46,7 +46,7 @@ var Sequencer = function(context) {
 		$('#channel' + channel.number).append(soloButton);
 		var muteButton = '<input type="button" class="controlButton muteButton" channel="' + channel.number + '" data=' + channel.mute + ' value="M"  id="ch' + channel.number + '_mute"></button>';
 		$('#channel' + channel.number).append(muteButton);
-		var gainSlider = '<input type="range" class="gainSlider" channel="' + channel.number + '" min="0" max="1" step="0.1" value="1"  id="ch' + channel.number + '_gain"></button>';
+		var gainSlider = '<input type="range" class="gainSlider" channel="' + channel.number + '" min="0" max="1" step="0.1" value="' + channel.gain + '"  id="ch' + channel.number + '_gain"></button>';
 		$('#channel' + channel.number).append(gainSlider);
 	}
 
@@ -102,28 +102,21 @@ var Sequencer = function(context) {
 	}
 
 	function muteOff(channel){
-		console.log("muteOff");
 	  channelArray[channel - 1].mute = true;
-	  console.log(channelArray[channel - 1].mute);
 	}
 
 	function muteOn(channel){
-		console.log("muteOn");
 	  channelArray[channel - 1].mute = false;
-	  console.log(channelArray[channel - 1].mute);
 	}
 
 	function registerGainSliderOperation(){
-		$(function(){
-			$('.gainSlider').each(function(){
-				$(this).on("input", function(){
-					var click = $(this);
-					var channel = click.attr('channel');
-					console.log(this.value);
-					channelArray[channel - 1].gain = this.value;
-				});
+		$('.gainSlider').each(function(){
+			$(this).on("input", function(){
+				var click = $(this);
+				var channel = click.attr('channel');
+				channelArray[channel - 1].gain = this.value;
 			})
-		});
+		})
 	}
 
 }
