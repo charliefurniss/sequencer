@@ -29,6 +29,7 @@ var Sequencer = function(context) {
 		}
 		registerMuteButtonClick();
 		registerGainSliderOperation();
+		registerClearbuttonClick();
 	}
 
 	function createChannelHTML(channel){
@@ -116,6 +117,12 @@ var Sequencer = function(context) {
 				var channel = click.attr('channel');
 				channelArray[channel - 1].gain = this.value;
 			})
+		})
+	}
+
+	function registerClearbuttonClick(){
+		$('#clearButton').on('click', function(){
+			console.log('clicked');
 		})
 	}
 
