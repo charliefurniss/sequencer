@@ -90,21 +90,23 @@ var Sequencer = function(context) {
 			$('.muteButton').each(function(){
 				$(this).on('click', function(){				
 					var click = $(this);
-					console.log(click.attr('data'));
-					click.attr('data') === "true" ? muteOff(click) : muteOn(click);
+					var channel = click.attr('channel');
+					channelArray[channel - 1].mute === false ? muteOff(channel) : muteOn(channel);
 				})
 			})
 		});
 	}
 
-	function muteOff(click){
+	function muteOff(channel){
 		console.log("muteOff");
-	  click.attr('data', "false");
+	  channelArray[channel - 1].mute = true;
+	  console.log(channelArray[channel - 1].mute);
 	}
 
-	function muteOn(click){
+	function muteOn(channel){
 		console.log("muteOn");
-	  click.attr('data', "true");
+	  channelArray[channel - 1].mute = false;
+	  console.log(channelArray[channel - 1].mute);
 	}
 
 }
