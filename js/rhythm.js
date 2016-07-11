@@ -2,9 +2,9 @@ var Rhythm = function(context){
 
   this.play = function(bufferList, config, channelArray) {
 
-    function playSound(buffer, time) {
+    function playSound(channelObject, time) {
       var source = context.createBufferSource();
-      source.buffer = buffer;
+      source.buffer = channelObject.instr;
       var gainNode = context.createGain();
       source.connect(gainNode);
       gainNode.gain.value = 0.5;
@@ -40,7 +40,7 @@ var Rhythm = function(context){
           } else {
             // play sound on steps with value of 1
             if (channelArray[i].seqArray[step] == 1){
-              playSound(channelArray[i].instr, time + step * config.sixteenthNoteTime);
+              playSound(channelArray[i], time + step * config.sixteenthNoteTime);
             }
           }          
       	}
