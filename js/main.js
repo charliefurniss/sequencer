@@ -42,7 +42,6 @@ $(document).ready(function() {
 		setUpLoopButton();
 		sequencer.setUpChannels(bufferList, config);
 		sequencer.registerSeqButtonClick();
-		sequencer.registerMuteButtonClick();
 	}
 
 	function setUpLoopButton(){
