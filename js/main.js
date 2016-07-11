@@ -54,10 +54,12 @@ $(document).ready(function() {
 
 	function loopOff() {
 	  $('#loopButton').val("loop off");
+	  config.loop = false;
 	}
 
 	function loopOn() {
 	  $('#loopButton').val("loop on");
+	  config.loop = true;
 	}
 	  
 
