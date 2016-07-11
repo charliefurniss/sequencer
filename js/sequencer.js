@@ -39,9 +39,9 @@ var Sequencer = function(context) {
 			var button = '<button class="seqButton" channel="' + channel.number + '" data="' + step + '" value="0" id="ch' + channel.number + '_st' + step +'"></button>';
 			$('#channel' + channel.number).append(button);
 		}
-		var soloButton = '<input type="button" class="controlButton" channel="' + channel.number + '" data="' + channel.solo + '" value="S"  id="ch_' + channel.number + 'solo"></button>';
+		var soloButton = '<input type="button" class="controlButton soloButton" channel="' + channel.number + '" data="' + channel.solo + '" value="S"  id="ch_' + channel.number + 'solo"></button>';
 		$('#channel' + channel.number).append(soloButton);
-		var muteButton = '<input type="button" class="controlButton" channel="' + channel.number + '" data="' + channel.mute + '" value="M"  id="ch_' + channel.number + 'mute"></button>';
+		var muteButton = '<input type="button" class="controlButton muteButton" channel="' + channel.number + '" data="' + channel.mute + '" value="M"  id="ch_' + channel.number + 'mute"></button>';
 		$('#channel' + channel.number).append(muteButton);
 	}
 
@@ -82,4 +82,27 @@ var Sequencer = function(context) {
 	    });
 	  })
 	}
+
+
+	this.registerMuteButtonClick = function(){
+		$('.muteButton').each(function(){
+			$(this).on('click', function(){				
+				var click = $(this);
+				click.attr('data') == true ? muteOff() : muteOn();
+			})
+		})
+	}
+
+	function muteOff() {
+		console.log("muteOff");
+	  // $('#muteButton').val("loop off");
+	  // config.loop = false;
+	}
+
+	function muteOn() {
+		console.log("muteOn");
+	  // $('#muteButton').val("loop on");
+	  // config.loop = true;
+	}
+
 }

@@ -2,7 +2,7 @@ var Rhythm = function(context){
 
   this.play = function(bufferList, config, channelArray) {
 
-    var loop;
+    console.log(config.loop);
 
     function playSound(buffer, time) {
       var source = context.createBufferSource();
@@ -21,6 +21,8 @@ var Rhythm = function(context){
 
     //establish loop or not
 
+    var loop;
+
     if (config.loop){
       loop = 128;
     } else {
@@ -32,9 +34,12 @@ var Rhythm = function(context){
       for (i = 0; i < channelArray.length; i++){
       	for (var step=0; step < channelArray[i].seqArray.length; step++){
       		//play sound on steps with value of 1
-      		if (channelArray[i].seqArray[step] == 1){
-      			playSound(channelArray[i].instr, time + step * config.sixteenthNoteTime);
-      		}
+          if (channelArray[i].mute === true){
+            channelArray[i].seqArray[step] == 0;
+          }
+          if (channelArray[i].seqArray[step] == 1){
+            playSound(channelArray[i].instr, time + step * config.sixteenthNoteTime);
+          }
       	}
       }
     }
