@@ -39,6 +39,10 @@ var Sequencer = function(context) {
 			var button = '<button class="seqButton" channel="' + channel.number + '" data="' + step + '" value="0" id="ch' + channel.number + '_st' + step +'"></button>';
 			$('#channel' + channel.number).append(button);
 		}
+		var soloButton = '<input type="button" class="controlButton" channel="' + channel.number + '" data="' + channel.solo + '" value="S"  id="ch_' + channel.number + 'solo"></button>';
+		$('#channel' + channel.number).append(soloButton);
+		var muteButton = '<input type="button" class="controlButton" channel="' + channel.number + '" data="' + channel.mute + '" value="M"  id="ch_' + channel.number + 'mute"></button>';
+		$('#channel' + channel.number).append(muteButton);
 	}
 
 	this.registerSeqButtonClick = function(){
