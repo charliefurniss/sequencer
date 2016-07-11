@@ -39,9 +39,27 @@ $(document).ready(function() {
 		$('#playButton').click(function(){
 		  rhythm.play(bufferList, config, channelArray);
 		});
+		setUpLoopButton();
 		sequencer.setUpChannels(bufferList, config);
 		sequencer.registerSeqButtonClick();
 	}
+
+	function setUpLoopButton(){
+		$(function(){
+			$('#loopButton').click(function() {
+		    $(this).val() == "loop on" ? loopOff() : loopOn();
+		  });
+		});
+	}
+
+	function loopOff() {
+	  $('#loopButton').val("loop off");
+	}
+
+	function loopOn() {
+	  $('#loopButton').val("loop on");
+	}
+	  
 
 });
 
