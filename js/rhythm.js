@@ -5,7 +5,10 @@ var Rhythm = function(context){
     function playSound(buffer, time) {
       var source = context.createBufferSource();
       source.buffer = buffer;
-      source.connect(context.destination);
+      var gainNode = context.createGain();
+      source.connect(gainNode);
+      gainNode.gain.value = 0.5;
+      gainNode.connect(context.destination);
 
       if (!source.start)
         source.start = source.noteOn;
