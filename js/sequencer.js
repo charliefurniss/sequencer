@@ -17,7 +17,9 @@ var Sequencer = function(context) {
 			var channel = {
 				number: i + 1,
 				seqArray: emptySeqArray,
-				instr: bufferList[i]
+				instr: bufferList[i],
+				solo: false,
+				mute: false
 			}
 			//push channel object into channelArray
 			channelArray.push(channel);
