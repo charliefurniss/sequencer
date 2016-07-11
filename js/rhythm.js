@@ -3,11 +3,12 @@ var Rhythm = function(context){
   this.play = function(bufferList, config, channelArray) {
 
     function playSound(channelObject, time) {
+      console.log(channelObject.gain);
       var source = context.createBufferSource();
       source.buffer = channelObject.instr;
       var gainNode = context.createGain();
       source.connect(gainNode);
-      gainNode.gain.value = 0.5;
+      gainNode.gain.value = channelObject.gain;
       gainNode.connect(context.destination);
 
       if (!source.start)

@@ -18,7 +18,7 @@ var Sequencer = function(context) {
 				number: i + 1,
 				seqArray: emptySeqArray,
 				instr: bufferList[i],
-				gain: 1,
+				gain: 0.3,
 				solo: false,
 				mute: false
 			}
