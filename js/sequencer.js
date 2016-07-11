@@ -29,7 +29,7 @@ var Sequencer = function(context) {
 		}
 		registerMuteButtonClick();
 		registerGainSliderOperation();
-		registerClearbuttonClick();
+		registerClearbuttonClick(channelArray);
 	}
 
 	function createChannelHTML(channel){
@@ -120,9 +120,13 @@ var Sequencer = function(context) {
 		})
 	}
 
-	function registerClearbuttonClick(){
+	function registerClearbuttonClick(channelArray){
 		$('#clearButton').on('click', function(){
-			console.log('clicked');
+			for (i = 0; i < channelArray.length; i++){
+				for (k = 0; k < channelArray[i].seqArray.length; k++){
+					channelArray[i].seqArray[k] = 0;
+				}
+			}
 		})
 	}
 

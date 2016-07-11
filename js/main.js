@@ -14,7 +14,7 @@ $(document).ready(function() {
 
 		context	= new Context();
 		context = context.context;
-		sequencer = new Sequencer(context);
+		sequencer = new Sequencer(context, config);
 		rhythm = new Rhythm(context);
 		channelArray = sequencer.channelArray;
 
