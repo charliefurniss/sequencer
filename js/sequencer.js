@@ -18,7 +18,7 @@ var Sequencer = function(context) {
 				number: i + 1,
 				seqArray: emptySeqArray,
 				instr: bufferList[i],
-				gain: 0.3,
+				gain: 1,
 				solo: false,
 				mute: false
 			}
@@ -28,6 +28,7 @@ var Sequencer = function(context) {
 			createChannelHTML(channel);
 		}
 		registerMuteButtonClick();
+		registerGainSliderOperation();
 	}
 
 	function createChannelHTML(channel){
@@ -41,10 +42,12 @@ var Sequencer = function(context) {
 			var button = '<button class="seqButton" channel="' + channel.number + '" data="' + step + '" value="0" id="ch' + channel.number + '_st' + step +'"></button>';
 			$('#channel' + channel.number).append(button);
 		}
-		var soloButton = '<input type="button" class="controlButton soloButton" channel="' + channel.number + '" data=' + channel.solo + ' value="S"  id="ch_' + channel.number + 'solo"></button>';
+		var soloButton = '<input type="button" class="controlButton soloButton" channel="' + channel.number + '" data=' + channel.solo + ' value="S"  id="ch' + channel.number + '_solo"></button>';
 		$('#channel' + channel.number).append(soloButton);
-		var muteButton = '<input type="button" class="controlButton muteButton" channel="' + channel.number + '" data=' + channel.mute + ' value="M"  id="ch_' + channel.number + 'mute"></button>';
+		var muteButton = '<input type="button" class="controlButton muteButton" channel="' + channel.number + '" data=' + channel.mute + ' value="M"  id="ch' + channel.number + '_mute"></button>';
 		$('#channel' + channel.number).append(muteButton);
+		var gainSlider = '<input type="range" class="gainSlider" channel="' + channel.number + '" min="0" max="1" step="0.1" value="1"  id="ch' + channel.number + '_gain"></button>';
+		$('#channel' + channel.number).append(gainSlider);
 	}
 
 	this.registerSeqButtonClick = function(){
@@ -108,6 +111,19 @@ var Sequencer = function(context) {
 		console.log("muteOn");
 	  channelArray[channel - 1].mute = false;
 	  console.log(channelArray[channel - 1].mute);
+	}
+
+	function registerGainSliderOperation(){
+		$(function(){
+			$('.gainSlider').each(function(){
+				$(this).on("input", function(){
+					var click = $(this);
+					var channel = click.attr('channel');
+					console.log(this.value);
+					channelArray[channel - 1].gain = this.value;
+				});
+			})
+		});
 	}
 
 }
