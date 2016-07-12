@@ -40,14 +40,14 @@ var Sequencer = function(context) {
 
 		for (j = 0; j < channel.seqArray.length; j++){
 			var step = j + 1;
-			var button = '<button class="seqButton" channel="' + channel.number + '" data="' + step + '" value="0" id="ch' + channel.number + '_st' + step +'"></button>';
+			var button = '<button class="seqButton seqNotClicked" channel="' + channel.number + '" data="' + step + '" value="0" id="ch' + channel.number + '_st' + step + '"></button>';
 			$('#channel' + channel.number).append(button);
 		}
 		var soloButton = '<input type="button" class="controlButton soloButton" channel="' + channel.number + '" data=' + channel.solo + ' value="S"  id="ch' + channel.number + '_solo"></button>';
 		$('#channel' + channel.number).append(soloButton);
 		var muteButton = '<input type="button" class="controlButton muteButton" channel="' + channel.number + '" data=' + channel.mute + ' value="M"  id="ch' + channel.number + '_mute"></button>';
 		$('#channel' + channel.number).append(muteButton);
-		var gainSlider = '<input type="range" class="gainSlider" channel="' + channel.number + '" min="0" max="1" step="0.1" value="' + channel.gain + '"  id="ch' + channel.number + '_gain"></button>';
+		var gainSlider = '<input type="range" class="gainSlider" channel="' + channel.number + '" min="0" max="1" step="0.001" value="' + channel.gain + '"  id="ch' + channel.number + '_gain"></button>';
 		$('#channel' + channel.number).append(gainSlider);
 	}
 
@@ -121,10 +121,22 @@ var Sequencer = function(context) {
 	}
 
 	function registerClearbuttonClick(channelArray){
+		//listen for click on clear button
 		$('#clearButton').on('click', function(){
+			//iterate through all channels
 			for (i = 0; i < channelArray.length; i++){
+				//iterate through steps in relevant channel
 				for (k = 0; k < channelArray[i].seqArray.length; k++){
+					//make value of each step 0
 					channelArray[i].seqArray[k] = 0;
+					
+					var channel = i + 1;
+					var step = k + 1;
+					var stepButton = $('#ch' + channel + '_st' + step);
+					//make value of HTML button 0 and class seqNotClicked
+					if (stepButton.val(1)){
+						stepButton.val(0).addClass('seqNotClicked').removeClass('seqClicked');
+					}
 				}
 			}
 		})
