@@ -28,6 +28,7 @@ var Sequencer = function(context) {
 			createChannelHTML(channel);
 		}
 		registerMuteButtonClick();
+		registerSoloButtonClick();
 		registerGainSliderOperation();
 		registerClearbuttonClick(channelArray);
 	}
@@ -109,6 +110,32 @@ var Sequencer = function(context) {
 	function muteOn(channel){
 	  channelArray[channel - 1].mute = false;
 	}
+
+
+	function registerSoloButtonClick(){
+		$(function(){
+			$('.soloButton').each(function(){
+				$(this).on('click', function(){				
+					var click = $(this);
+					var channel = click.attr('channel');
+					channelArray[channel - 1].solo === false ? soloOff(channel) : soloOn(channel);
+				})
+			})
+		});
+	}
+
+	function soloOff(channel){
+	  channelArray[channel - 1].solo = true;
+	  console.log('solo = ' + channelArray[channel - 1].solo)
+	}
+
+	function soloOn(channel){
+	  channelArray[channel - 1].solo = false;
+	  console.log('solo = ' + channelArray[channel - 1].solo)
+	}
+
+
+
 
 	function registerGainSliderOperation(){
 		$('.gainSlider').each(function(){
