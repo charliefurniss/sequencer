@@ -1,23 +1,60 @@
 body {
 	background: gray;
+	padding: 40px;
 }
 
 input[type="button"] {
 	border-radius: 0px !important;
 }
 
-.controlButtonContainer {
+input[type=range][orient=vertical] {
+    writing-mode: bt-lr; /* IE */
+    -webkit-appearance: slider-vertical; /* WebKit */
+    width: 8px;
+    height: 175px;
+    padding: 0 5px;
+    display: inline;
+}
+
+#sequencer {
+	margin-bottom: 40px;
+}
+
+#controlButtons {
+	margin-top: 20px;
+}
+
+.channelElementContainer {
+	display: inline;
+}
+
+.controlButtonContainer, .paramsContainer {
 	width: 100%;
+	display: inline;
 }
 
 .controlbutton {
-	display: block;
 	margin-bottom: 5px;
 	font-family: 'Oxygen', sans-serif;
 	font-size: 16px;
 	border: none;
 	height: 50px;
 	width: 100%;
+}
+
+.channelElement {
+	display: table-row;
+}
+
+.channelButtonClicked {
+	background-color: yellow;
+	outline: none;
+}
+
+.seqContainer {
+	border-top: 1px solid;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 .seqButton {
@@ -33,13 +70,6 @@ input[type="button"] {
 
 .seqClicked {
 	background-color: red;
-}
-
-.controlButtonClicked {
-	background-color: yellow;
-	border: none;
-	outline: none;
-	box-sizing: none;
 }
  
 button:focus {

@@ -36,7 +36,7 @@ var Sequencer = function(context) {
 	function createChannelHTML(channel){
 		var seqContainerDiv = '<div class="seqContainer" id="channel' + channel.number + '"></div>';
 		
-		$('body').append(seqContainerDiv);
+		$('#sequencer').append(seqContainerDiv);
 		$('#channel' + channel.number).append(channel.number + " ");
 
 		for (j = 0; j < channel.seqArray.length; j++){
@@ -44,12 +44,14 @@ var Sequencer = function(context) {
 			var button = '<button class="seqButton seqNotClicked" channel="' + channel.number + '" data="' + step + '" value="0" id="ch' + channel.number + '_st' + step + '"></button>';
 			$('#channel' + channel.number).append(button);
 		}
-		var soloButton = '<input type="button" class="controlButton soloButton" channel="' + channel.number + '" data=' + channel.solo + ' value="S"  id="ch' + channel.number + '_solo"></button>';
-		$('#channel' + channel.number).append(soloButton);
-		var muteButton = '<input type="button" class="controlButton muteButton" channel="' + channel.number + '" data=' + channel.mute + ' value="M"  id="ch' + channel.number + '_mute"></button>';
-		$('#channel' + channel.number).append(muteButton);
-		var gainSlider = '<input type="range" class="gainSlider" channel="' + channel.number + '" min="0" max="1" step="0.001" value="' + channel.gain + '"  id="ch' + channel.number + '_gain"></button>';
-		$('#channel' + channel.number).append(gainSlider);
+		var channelElementContainer = '<div class="channelElementContainer" id="ch' + channel.number + '_controlContainer"></div>';
+		$('#slidersContainer').append(channelElementContainer);
+		var soloButton = '<input type="button" class="channelElement soloButton" channel="' + channel.number + '" data=' + channel.solo + ' value="S"  id="ch' + channel.number + '_solo"></button>';
+		$('#ch' + channel.number + '_controlContainer').append(soloButton);
+		var muteButton = '<input type="button" class="channelElement muteButton" channel="' + channel.number + '" data=' + channel.mute + ' value="M"  id="ch' + channel.number + '_mute"></button>';
+		$('#ch' + channel.number + '_controlContainer').append(muteButton);
+		var gainSlider = '<input type="range" orient="vertical" class="channelElement gainSlider" channel="' + channel.number + '" min="0" max="1" step="0.001" value="' + channel.gain + '"  id="ch' + channel.number + '_gain"></button>';
+		$('#ch' + channel.number + '_controlContainer').append(gainSlider);
 	}
 
 	this.registerSeqButtonClick = function(){
@@ -105,12 +107,12 @@ var Sequencer = function(context) {
 
 	function muteOff(click, channel){
 	  channelArray[channel - 1].mute = false;
-	  click.removeClass('controlButtonClicked');
+	  click.removeClass('channelButtonClicked');
 	}
 
 	function muteOn(click, channel){
 	  channelArray[channel - 1].mute = true;
-	  click.addClass('controlButtonClicked');
+	  click.addClass('channelButtonClicked');
 	}
 
 
@@ -128,12 +130,12 @@ var Sequencer = function(context) {
 
 	function soloOn(click, channel){
 	  channelArray[channel - 1].solo = true;
-	  click.addClass('controlButtonClicked');
+	  click.addClass('channelButtonClicked');
 	}
 
 	function soloOff(click, channel){
 	  channelArray[channel - 1].solo = false;
-	  click.removeClass('controlButtonClicked');
+	  click.removeClass('channelButtonClicked');
 	}
 
 

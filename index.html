@@ -14,26 +14,34 @@
         <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css" >
     </head>
     <body>
-    	<div class="paramsContainer">
-    		<form>
-    			<label for="bpmForm">BPM</label>
-    			<input id="bpmForm" type="number" min="1" max="200" />
-    			<input type="submit" value="submit BPM"/>
-    		</form>
-    	</div>
 
-    	<div class="controlButtonContainer">
-            <input type="button" class="controlButton" value="loop off" id="loopButton"></button>
+    	<div id="sequencer">
         </div>
-        <div class="controlButtonContainer">
-    		<input type="button" class="controlButton" value="play" id="playButton"></button>
-    	</div>
-    	<div class="controlButtonContainer">
-    		<input type="button" class="controlButton" value="stop" id="stopButton"></button>
-    	</div>
-        <div class="controlButtonContainer">
-            <input type="button" class="controlButton" value="clear" id="clearButton"></button>
-        </div>	
+        <div id="control">
+            <div class="paramsContainer">
+                <form>
+                    <label for="bpmForm">BPM</label>
+                    <input id="bpmForm" type="number" min="1" max="200" />
+                    <input type="submit" value="submit BPM"/>
+                </form>
+            </div>
+            <div id="slidersContainer">
+            </div>
+            <div id="controlButtons">
+            	<div class="controlButtonContainer">
+                    <input type="button" class="controlButton" value="loop off" id="loopButton"></button>
+                </div>
+                <div class="controlButtonContainer">
+            		<input type="button" class="controlButton" value="play" id="playButton"></button>
+            	</div>
+            	<div class="controlButtonContainer">
+            		<input type="button" class="controlButton" value="stop" id="stopButton"></button>
+            	</div>
+                <div class="controlButtonContainer">
+                    <input type="button" class="controlButton" value="clear" id="clearButton"></button>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
 </html> 
