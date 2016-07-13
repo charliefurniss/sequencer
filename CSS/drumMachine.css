@@ -1,7 +1,9 @@
 body {
-
 	background: gray;
+}
 
+input[type="button"] {
+	border-radius: 0px !important;
 }
 
 .controlButtonContainer {
@@ -35,8 +37,11 @@ body {
 
 .controlButtonClicked {
 	background-color: yellow;
+	border: none;
+	outline: none;
+	box-sizing: none;
 }
-
+ 
 button:focus {
 	outline: none;
 }
