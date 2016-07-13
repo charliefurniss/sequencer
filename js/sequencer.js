@@ -118,23 +118,23 @@ var Sequencer = function(context) {
 				$(this).on('click', function(){				
 					var click = $(this);
 					var channel = click.attr('channel');
-					channelArray[channel - 1].solo === false ? soloOff(click, channel) : soloOn(click, channel);
+					channelArray[channel - 1].solo === false ? soloOn(click, channel) : soloOff(click, channel);
 				})
 			})
 		});
 	}
 
-	function soloOff(click, channel){
-	  channelArray[channel - 1].solo = true;
-	  click.removeClass('controlButtonClicked');
-	}
-
 	function soloOn(click, channel){
-	  channelArray[channel - 1].solo = false;
+	  channelArray[channel - 1].solo = true;
 	  click.addClass('controlButtonClicked');
+	  console.log("soloOn");
 	}
 
-
+	function soloOff(click, channel){
+	  channelArray[channel - 1].solo = false;
+	  click.removeClass('controlButtonClicked');
+	  console.log("soloOff");
+	}
 
 
 	function registerGainSliderOperation(){
