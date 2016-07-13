@@ -97,18 +97,20 @@ var Sequencer = function(context) {
 				$(this).on('click', function(){				
 					var click = $(this);
 					var channel = click.attr('channel');
-					channelArray[channel - 1].mute === false ? muteOff(channel) : muteOn(channel);
+					channelArray[channel - 1].mute === false ? muteOn(click, channel) : muteOff(click, channel);
 				})
 			})
 		});
 	}
 
-	function muteOff(channel){
-	  channelArray[channel - 1].mute = true;
+	function muteOff(click, channel){
+	  channelArray[channel - 1].mute = false;
+	  click.removeClass('controlButtonClicked');
 	}
 
-	function muteOn(channel){
-	  channelArray[channel - 1].mute = false;
+	function muteOn(click, channel){
+	  channelArray[channel - 1].mute = true;
+	  click.addClass('controlButtonClicked');
 	}
 
 
@@ -127,13 +129,11 @@ var Sequencer = function(context) {
 	function soloOn(click, channel){
 	  channelArray[channel - 1].solo = true;
 	  click.addClass('controlButtonClicked');
-	  console.log("soloOn");
 	}
 
 	function soloOff(click, channel){
 	  channelArray[channel - 1].solo = false;
 	  click.removeClass('controlButtonClicked');
-	  console.log("soloOff");
 	}
 
 
