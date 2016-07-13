@@ -21,7 +21,6 @@ var Rhythm = function(context){
     var startTime = context.currentTime + 0.100;
 
     //establish loop or not
-
     var loop;
 
     if (config.loop){
@@ -31,50 +30,54 @@ var Rhythm = function(context){
     }
 
     for (var seq = 0; seq < loop; seq++) {
-
       var time = startTime + seq * config.seqLength * config.sixteenthNoteTime;
-
-      if (checkForActiveSolo(channelArray)){
-        playSoloArray(channelArray, time, config);
-      } else {
-        playArray(channelArray, time, config);
-      }
+      var soloBoolean = checkForSolo(channelArray);
+      playArray(channelArray, time, config, soloBoolean);
     }
 
-    function checkForActiveSolo(array){
+    function checkForSolo(array){
       for (i = 0; i < channelArray.length; i++){
         if (channelArray[i].solo){
           return true;
+        } else {
+          return false;
         }
       }
     }
 
-    function playArray(array, time, config){
-      for (i = 0; i < array.length; i++){
+    function playArray(array, time, config, soloBoolean){
 
-        for (var step = 0; step < array[i].seqArray.length; step++){
+      var arrayToPlay = createArrayToPlay(array);
+
+      for (i = 0; i < arrayToPlay.length; i++){
+        for (var step = 0; step < arrayToPlay[i].seqArray.length; step++){
           // mute channel if mute button is clicked
-          if (array[i].mute){
-            array[i].seqArray[step] == 0;
+          if (arrayToPlay[i].mute){
+            arrayToPlay[i].seqArray[step] == 0;
           } else {
             // play sound on steps with value of 1
-            if (array[i].seqArray[step] == 1){
-              playSound(array[i], time + step * config.sixteenthNoteTime);
+            if (arrayToPlay[i].seqArray[step] == 1){
+              playSound(arrayToPlay[i], time + step * config.sixteenthNoteTime);
             }
           }          
         }
       }
     }
 
-    function playSoloArray(array, time, config){
-      var soloArray = [];
-      for (i = 0; i < array.length; i++){
-        if (channelArray[i].solo){
-          soloArray.push(channelArray[i]);
+
+    function createArrayToPlay(array){
+      var arrayToPlay = [];
+      if (soloBoolean){
+        for (i = 0; i < array.length; i++){
+          if (array[i].solo){
+            arrayToPlay.push(channelArray[i]);
+          }
         }
+      } else {
+        arrayToPlay = array;
       }
-      playArray(soloArray, time, config);
-    }
+      return arrayToPlay;
+    } 
 
   };
 
