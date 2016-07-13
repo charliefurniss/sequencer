@@ -34,17 +34,17 @@ var Rhythm = function(context){
 
       var time = startTime + seq * config.seqLength * config.sixteenthNoteTime;
 
-      // checkForActiveSolo(channelArray);
-
-      playArray(channelArray, time, config);
-      
+      if (checkForActiveSolo(channelArray)){
+        playSoloArray(channelArray, time, config);
+      } else {
+        playArray(channelArray, time, config);
+      }
     }
 
     function checkForActiveSolo(array){
-      var soloChannelArray = [];
       for (i = 0; i < channelArray.length; i++){
         if (channelArray[i].solo){
-          soloChannelArray.push(channelArray[i]);
+          return true;
         }
       }
     }
@@ -65,6 +65,17 @@ var Rhythm = function(context){
         }
       }
     }
+
+    function playSoloArray(array, time, config){
+      var soloArray = [];
+      for (i = 0; i < array.length; i++){
+        if (channelArray[i].solo){
+          soloArray.push(channelArray[i]);
+        }
+      }
+      playArray(soloArray, time, config);
+    }
+
   };
 
 }
