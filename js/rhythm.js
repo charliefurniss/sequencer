@@ -31,19 +31,38 @@ var Rhythm = function(context){
     }
 
     for (var seq = 0; seq < loop; seq++) {
+
       var time = startTime + seq * config.seqLength * config.sixteenthNoteTime;
+
+      // checkForActiveSolo(channelArray);
+
+      playArray(channelArray, time, config);
+      
+    }
+
+    function checkForActiveSolo(array){
+      var soloChannelArray = [];
       for (i = 0; i < channelArray.length; i++){
-      	for (var step = 0; step < channelArray[i].seqArray.length; step++){
-      		// mute channel if mute button is clicked
-          if (channelArray[i].mute === true){
-            channelArray[i].seqArray[step] == 0;
+        if (channelArray[i].solo){
+          soloChannelArray.push(channelArray[i]);
+        }
+      }
+    }
+
+    function playArray(array, time, config){
+      for (i = 0; i < array.length; i++){
+
+        for (var step = 0; step < array[i].seqArray.length; step++){
+          // mute channel if mute button is clicked
+          if (array[i].mute){
+            array[i].seqArray[step] == 0;
           } else {
             // play sound on steps with value of 1
-            if (channelArray[i].seqArray[step] == 1){
-              playSound(channelArray[i], time + step * config.sixteenthNoteTime);
+            if (array[i].seqArray[step] == 1){
+              playSound(array[i], time + step * config.sixteenthNoteTime);
             }
           }          
-      	}
+        }
       }
     }
   };

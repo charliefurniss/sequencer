@@ -4,25 +4,6 @@ body {
 
 }
 
-p {
-	height: 50px;
-	width: 308px;
-	margin: 0 auto;
-	margin-top: 50px;
-	font-size: 16px;
-	background-color: #EA66E5;
-	font-family: 'Oxygen', sans-serif;
-	font-size: 16px;
-	text-align: center;
-}
-
-#allBoxes {
-	width: 420px;
-	height: 420px;
-	margin: 80px auto;
-	padding: 0;
-}
-
 .controlButtonContainer {
 	width: 100%;
 }
@@ -33,7 +14,6 @@ p {
 	font-family: 'Oxygen', sans-serif;
 	font-size: 16px;
 	border: none;
-	z-index: 2;
 	height: 50px;
 	width: 100%;
 }
@@ -53,11 +33,10 @@ p {
 	background-color: red;
 }
 
-button:focus {
-
-	outline: none;
+.controlButtonClicked {
+	background-color: yellow;
 }
 
-.row {
-	text-align: center;
+button:focus {
+	outline: none;
 }
