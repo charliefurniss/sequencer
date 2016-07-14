@@ -44,14 +44,17 @@ var Sequencer = function(context) {
 			var button = '<button class="seqButton seqNotClicked" channel="' + channel.number + '" data="' + step + '" value="0" id="ch' + channel.number + '_st' + step + '"></button>';
 			$('#channel' + channel.number).append(button);
 		}
-		var channelElementContainer = '<div class="channelElementContainer" id="ch' + channel.number + '_controlContainer"></div>';
-		$('#slidersContainer').append(channelElementContainer);
-		var soloButton = '<input type="button" class="channelElement soloButton" channel="' + channel.number + '" data=' + channel.solo + ' value="S"  id="ch' + channel.number + '_solo"></button>';
-		$('#ch' + channel.number + '_controlContainer').append(soloButton);
-		var muteButton = '<input type="button" class="channelElement muteButton" channel="' + channel.number + '" data=' + channel.mute + ' value="M"  id="ch' + channel.number + '_mute"></button>';
-		$('#ch' + channel.number + '_controlContainer').append(muteButton);
-		var gainSlider = '<input type="range" orient="vertical" class="channelElement gainSlider" channel="' + channel.number + '" min="0" max="1" step="0.001" value="' + channel.gain + '"  id="ch' + channel.number + '_gain"></button>';
-		$('#ch' + channel.number + '_controlContainer').append(gainSlider);
+
+		// var channelNumber = '<td class="channel"><h3 class="channelNumber">' + channel.number + '</h3><td>'
+		// $('#mixingDeskHeadContainer').append(channelNumber);
+
+		// var muteButton = '<td class="channel"><input type="button" class="channel channelElement muteButton" channel="' + channel.number + '" data=' + channel.mute + ' value="M"  id="ch' + channel.number + '_mute"></button></td>';
+		// $('#muteButtonsContainer').append(muteButton);
+		// var soloButton = '<td class="channel"><input type="button" class="channel channelElement soloButton" channel="' + channel.number + '" data=' + channel.solo + ' value="S"  id="ch' + channel.number + '_solo"></button></td>';
+		// $('#soloButtonsContainer').append(soloButton);
+		// var gainSlider = '<td class="channel"><input type="range" orient="vertical" class="channel channelElement gainSlider" channel="' + channel.number + '" min="0" max="1" step="0.001" value="' + channel.gain + '"  id="ch' + channel.number + '_gain"></button></td>';
+		// $('#gainSliderContainer').append(gainSlider);
+		
 	}
 
 	this.registerSeqButtonClick = function(){

@@ -24,6 +24,20 @@ input[type=range][orient=vertical] {
 	margin-top: 20px;
 }
 
+#mixingDeskHeadContainer td {
+	
+}
+
+.channel {
+	width: 100px;
+}
+
+#muteButtonsContainer,
+#soloButtonsContainer,
+#gainSliderContainer, {
+	width: 100%;
+}
+
 .channelElementContainer {
 	display: inline;
 }
@@ -40,10 +54,6 @@ input[type=range][orient=vertical] {
 	border: none;
 	height: 50px;
 	width: 100%;
-}
-
-.channelElement {
-	display: table-row;
 }
 
 .channelButtonClicked {
