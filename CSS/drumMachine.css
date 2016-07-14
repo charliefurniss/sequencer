@@ -24,22 +24,31 @@ input[type=range][orient=vertical] {
 	margin-top: 20px;
 }
 
-#mixingDeskHeadContainer td {
-	
+td {
+
 }
 
 .channel {
 	width: 100px;
+	border: 1px solid;
+	text-align: center;
 }
 
-#muteButtonsContainer,
-#soloButtonsContainer,
-#gainSliderContainer, {
-	width: 100%;
+.channelElement {
+	margin: 10px 0;
+	position: relative;
 }
 
-.channelElementContainer {
-	display: inline;
+.muteButton, .soloButton {
+	width: 30px;
+	height: 30px;
+	margin-bottom: 10px;
+	text-align: center;
+	border: 1px solid;
+}
+
+.mixingDeskElementContainer {
+
 }
 
 .controlButtonContainer, .paramsContainer {
