@@ -10,10 +10,10 @@ input[type=range][orient=vertical] {
     padding: 0 5px;
     display: inline;
 }
-
+/*
 #controlButtons {
 	margin-top: 20px;
-}
+}*/
 
 .channel {
 	width: 100px;
@@ -34,6 +34,10 @@ input[type=range][orient=vertical] {
 	border: 1px solid;
 }
 
+/*.muteButton, .soloButton, .controlButton {
+	background-color: orange;
+}*/
+
 #mixingDesk {
 	padding: 40px;
 	background-color: #5e6375;
@@ -41,6 +45,10 @@ input[type=range][orient=vertical] {
 
 #sequencer {
 	padding: 40px;
+}
+
+#channelsContainer,
+#sequencer {
 	background-color: #414b73;
 }
 
@@ -49,30 +57,26 @@ input[type=range][orient=vertical] {
 	margin: 0 auto;
 }
 
-#channelsContainer {
-	background-color: orange;
-}
-
 #controlContainer {
 	text-align: center;
 	padding: 20px 0px;
-	margin: 20px auto;
-	background-color: #738696;
+	margin-bottom: 40px;
+	width: 800px;
 }
 
 .controlButtonClicked {
 	background-color: green;
+	display: inline;
 	font-family: 'Oxygen', sans-serif;
 	color: #FFFFFF;
 	font-size: 16px;
 	border: none;
 	padding: 10px;
 	height: 50px;
-	width: 130px;
-	margin-right: 20px;
+	width: 125px;
+	margin: 0 35px;
 }
-
-.controlButtonContainer, 
+ 
 .paramsContainer, 
 .seqChannelNumber {
 	display: inline;
@@ -86,15 +90,29 @@ input[type=range][orient=vertical] {
 	display: inline;
 }
 
+h1#title {
+	text-align: center;
+	color: #FFFFFF;
+	margin: 0;
+	padding-top: 20px;
+	padding-bottom: 10px;
+}
+
+#controlContainer,
+h1#title {
+	background-color: #4F426F;
+}
+
 input[class="controlButton"]{
+	display: inline;
 	font-family: 'Oxygen', sans-serif;
 	color: #FFFFFF;
 	font-size: 16px;
 	border: none;
 	padding: 10px;
 	height: 50px;
-	width: 130px;
-	margin-right: 20px;
+	width: 125px;
+	margin: 0 35px;
 }
 
 .channelButtonClicked {

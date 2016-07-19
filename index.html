@@ -14,9 +14,14 @@
         <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css" >
     </head>
     <body>
+        <header>
+            <h1 id="title">BeatMaster</h1>
+        </header>
     	<div id="sequencer">
             <div id="sequencerChannels">
             </div>
+        </div>
+        <div id="mixingDesk">
             <div id="controlContainer">
                 <!-- <div class="paramsContainer">
                     <form id="bpmForm">
@@ -25,21 +30,11 @@
                         <input class="controlButton" type="submit" value="submit BPM"/>
                     </form>
                 </div> -->
-                <div class="controlButtonContainer">
-                    <input type="button" class="controlButton" value="play" id="playButton"></button>
-                </div>
-                <div class="controlButtonContainer">
-                    <input type="button" class="controlButton" value="stop" id="stopButton"></button>
-                </div>
-                <div class="controlButtonContainer">
-                    <input type="button" class="controlButton" value="clear" id="clearButton"></button>
-                </div>
-                <div class="controlButtonContainer">
-                    <input type="button" class="controlButton" value="loop off" id="loopButton"></button>
-                </div>
+                <input type="button" class="controlButton" value="play" id="playButton"></button>
+                <input type="button" class="controlButton" value="stop" id="stopButton"></button>
+                <input type="button" class="controlButton" value="clear" id="clearButton"></button>
+                <input type="button" class="controlButton" value="loop off" id="loopButton"></button>
             </div>
-        </div>
-        <div id="mixingDesk">
             <table id="channelsContainer">
                 <tr class="mixingDeskElementContainer" id="muteButtonsContainer"></tr>
                 <tr class="mixingDeskElementContainer" id="soloButtonsContainer"></tr>
