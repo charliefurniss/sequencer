@@ -27,7 +27,8 @@ $(document).ready(function() {
 	      'audio/TomSim1.wav',
 	      'audio/TomSim2.wav',
 	      'audio/TomSim3.wav',
-	      'audio/Clave808.wav'
+	      'audio/Clave808.wav',
+	      'audio/ClapDtrax15.wav'
 	    ],
 	    setUp
 	   );
@@ -47,18 +48,18 @@ $(document).ready(function() {
 	function setUpLoopButton(){
 		$(function(){
 			$('#loopButton').click(function() {
-		    $(this).val() == "loop on" ? loopOff() : loopOn();
+		    $(this).val() == "loop off" ? loopOn() : loopOff();
 		  });
 		});
 	}
 
 	function loopOff() {
-	  $('#loopButton').val("loop off");
+	  $('#loopButton').val("loop off").removeClass('controlButtonClicked');
 	  config.loop = false;
 	}
 
 	function loopOn() {
-	  $('#loopButton').val("loop on");
+	  $('#loopButton').val("loop on").addClass('controlButtonClicked');
 	  config.loop = true;
 	} 
 

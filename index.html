@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>DrumMachine</title>
+        <title>Sequencer</title>
         <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script src="js/context.js"></script>
         <script src="js/bufferLoader.js"></script>
@@ -14,37 +14,38 @@
         <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css" >
     </head>
     <body>
-
     	<div id="sequencer">
+            <div id="sequencerChannels">
+            </div>
+            <div id="controlContainer">
+                <!-- <div class="paramsContainer">
+                    <form id="bpmForm">
+                        <label for="bpmInput">BPM</label>
+                        <input class="controlButton" id="bpmInput" type="number" min="1" max="200" />
+                        <input class="controlButton" type="submit" value="submit BPM"/>
+                    </form>
+                </div> -->
+                <div class="controlButtonContainer">
+                    <input type="button" class="controlButton" value="play" id="playButton"></button>
+                </div>
+                <div class="controlButtonContainer">
+                    <input type="button" class="controlButton" value="stop" id="stopButton"></button>
+                </div>
+                <div class="controlButtonContainer">
+                    <input type="button" class="controlButton" value="clear" id="clearButton"></button>
+                </div>
+                <div class="controlButtonContainer">
+                    <input type="button" class="controlButton" value="loop off" id="loopButton"></button>
+                </div>
+            </div>
         </div>
-        <div id="control">
-            <table id="mixingDeskContainer">
+        <div id="mixingDesk">
+            <table id="channelsContainer">
                 <tr class="mixingDeskElementContainer" id="muteButtonsContainer"></tr>
                 <tr class="mixingDeskElementContainer" id="soloButtonsContainer"></tr>
                 <tr class="mixingDeskElementContainer" id="gainSliderContainer"></tr>
                 <tr class="mixingDeskElementContainer" id="mixingDeskHeadContainer"></tr>
             </table>
-            <div id="controlButtons">
-                <div class="paramsContainer">
-                    <form>
-                        <label for="bpmForm">BPM</label>
-                        <input id="bpmForm" type="number" min="1" max="200" />
-                        <input type="submit" value="submit BPM"/>
-                    </form>
-                </div>
-            	<div class="controlButtonContainer">
-                    <input type="button" class="controlButton" value="loop off" id="loopButton"></button>
-                </div>
-                <div class="controlButtonContainer">
-            		<input type="button" class="controlButton" value="play" id="playButton"></button>
-            	</div>
-            	<div class="controlButtonContainer">
-            		<input type="button" class="controlButton" value="stop" id="stopButton"></button>
-            	</div>
-                <div class="controlButtonContainer">
-                    <input type="button" class="controlButton" value="clear" id="clearButton"></button>
-                </div>
-            </div>
         </div>
     </body>
 </html>

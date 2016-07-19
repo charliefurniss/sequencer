@@ -36,8 +36,9 @@ var Sequencer = function(context) {
 	function createChannelHTML(channel){
 		var seqContainerDiv = '<div class="seqContainer" id="channel' + channel.number + '"></div>';
 		
-		$('#sequencer').append(seqContainerDiv);
-		$('#channel' + channel.number).append(channel.number + " ");
+		$('#sequencerChannels').append(seqContainerDiv);
+		var seqChannelNumber = '<h3 class="seqChannelNumber">' + channel.number + '</h3>';
+		$('#channel' + channel.number).append(seqChannelNumber);
 
 		for (j = 0; j < channel.seqArray.length; j++){
 			var step = j + 1;
@@ -51,8 +52,8 @@ var Sequencer = function(context) {
 		$('#soloButtonsContainer').append(soloButton);
 		var gainSlider = '<td class="channel"><input type="range" orient="vertical" class="channelElement gainSlider" channel="' + channel.number + '" min="0" max="1" step="0.001" value="' + channel.gain + '"  id="ch' + channel.number + '_gain"></button></td>';
 		$('#gainSliderContainer').append(gainSlider);
-		var channelNumber = '<td class="channel"><h3 class="channelElement channelNumber">' + channel.number + '</h3></td>'
-		$('#mixingDeskHeadContainer').append(channelNumber);
+		var mixerChannelNumber = '<td class="channel"><h3 class="channelElement channelNumber">' + channel.number + '</h3></td>'
+		$('#mixingDeskHeadContainer').append(mixerChannelNumber);
 	
 	}
 
