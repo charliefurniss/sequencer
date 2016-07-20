@@ -15,6 +15,7 @@ var Rhythm = function(context){
       source.start(time);
       $('#stopButton').click(function(){
         source.stop(0);
+        createButtonFlash(this);
       });
     }
 
@@ -77,8 +78,20 @@ var Rhythm = function(context){
         arrayToPlay = array;
       }
       return arrayToPlay;
-    } 
+    }
 
   };
+
+  function createButtonFlash(button){
+    console.log(button.id);
+    $('#' + button.id + 'Container')
+      .removeClass(button.id + 'ContainerColour')
+      .addClass('controlButtonContainerClicked');
+    setTimeout(function(){ 
+      $('#stopButtonContainer')
+        .addClass(button.id + 'ContainerColour')
+        .removeClass('controlButtonContainerClicked'); 
+    }, 1000);
+  }
 
 }
