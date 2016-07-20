@@ -32,17 +32,14 @@ button:focus {
 	position: relative;
 }
 
-.controlButtonClicked {
-	background-color: green;
-	display: inline;
-	font-family: 'Oxygen', sans-serif;
-	color: #FFFFFF;
-	font-size: 16px;
+.controlButtonContainerClicked {
+	background-color: red;
+	/*display: inline-block;
+	height: 75px;
+	width: 200px;
 	border: none;
-	padding: 10px;
-	height: 50px;
-	width: 125px;
-	margin: 0 35px;
+	margin-right: -2px;
+	margin-left: -2px;*/
 }
 
 .controlButtonContainer {
@@ -75,6 +72,10 @@ h1#title {
 	padding-bottom: 10px;
 }
 
+input {
+	outline: none;
+}
+
 input[class="controlButton"]{
 	display: inline;
 	width: 30px;
@@ -92,7 +93,7 @@ input[type=range][orient=vertical] {
     display: inline;
 }
 
-#loopButtonContainer {
+.loopButtonContainerColour {
 	background-color: #8A829C;
 }
 

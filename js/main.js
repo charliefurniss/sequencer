@@ -54,13 +54,17 @@ $(document).ready(function() {
 	}
 
 	function loopOff() {
-	  $('#loopButton').val("loop off").removeClass('controlButtonClicked');
-	  config.loop = false;
+		console.log("off");
+	  	$('#loopButton').val("loop off");
+	  	$('#loopButtonContainer').removeClass('controlButtonContainerClicked').addClass('loopButtonContainerColour');
+	  	config.loop = false;
 	}
 
 	function loopOn() {
-	  $('#loopButton').val("loop on").addClass('controlButtonClicked');
-	  config.loop = true;
+		console.log("on");
+	  	$('#loopButton').val("loop on");
+	  	$('#loopButtonContainer').removeClass('loopButtonContainerColour').addClass('controlButtonContainerClicked');
+	  	config.loop = true;
 	} 
 
 });
