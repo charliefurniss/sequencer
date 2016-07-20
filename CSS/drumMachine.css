@@ -1,5 +1,90 @@
-input[type="button"] {
+#bpmForm {
+	display: inline;
+}
+
+button:focus {
+	outline: none;
+}
+
+.channel {
+	width: 100px;
+	border: 1px solid;
+	text-align: center;
+}
+
+.channelButtonClicked {
+	background-color: yellow;
+	outline: none;
+}
+
+#channelsContainer,
+#sequencer {
+	background-color: #414b73;
+}
+
+#channelsContainer, #controlContainer, #sequencerChannels {
+	color: #FFFFFF;
+	margin: 0 auto;
+}
+
+.channelElement {
+	margin: 10px 0;
+	position: relative;
+}
+
+.controlButtonClicked {
+	background-color: green;
+	display: inline;
+	font-family: 'Oxygen', sans-serif;
+	color: #FFFFFF;
+	font-size: 16px;
+	border: none;
+	padding: 10px;
+	height: 50px;
+	width: 125px;
+	margin: 0 35px;
+}
+
+.controlButtonContainer {
+	display: inline-block;
+	height: 50px;
+	width: 125px;
+	margin: 0 35px;
+	background-color: gray;
+}
+
+#controlContainer {
+	text-align: center;
+	padding: 20px 0px;
+	margin-bottom: 40px;
+	width: 800px;
+}
+
+#controlContainer,
+h1#title {
+	background-color: #4F426F;
+}
+
+h1#title {
+	text-align: center;
+	color: #FFFFFF;
+	margin: 0;
+	padding-top: 20px;
+	padding-bottom: 10px;
+}
+
+input[class="controlButton"]{
+	display: inline;
+	border: none;
 	border-radius: 0px !important;
+	padding: 0;
+	height: 30px;
+	width: 30px;
+	margin: 0 35px;
+	background-color: gray;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
 }
 
 input[type=range][orient=vertical] {
@@ -9,21 +94,6 @@ input[type=range][orient=vertical] {
     height: 175px;
     padding: 0 5px;
     display: inline;
-}
-/*
-#controlButtons {
-	margin-top: 20px;
-}*/
-
-.channel {
-	width: 100px;
-	border: 1px solid;
-	text-align: center;
-}
-
-.channelElement {
-	margin: 10px 0;
-	position: relative;
 }
 
 .muteButton, .soloButton {
@@ -42,40 +112,6 @@ input[type=range][orient=vertical] {
 	padding: 40px;
 	background-color: #5e6375;
 }
-
-#sequencer {
-	padding: 40px;
-}
-
-#channelsContainer,
-#sequencer {
-	background-color: #414b73;
-}
-
-#channelsContainer, #controlContainer, #sequencerChannels {
-	color: #FFFFFF;
-	margin: 0 auto;
-}
-
-#controlContainer {
-	text-align: center;
-	padding: 20px 0px;
-	margin-bottom: 40px;
-	width: 800px;
-}
-
-.controlButtonClicked {
-	background-color: green;
-	display: inline;
-	font-family: 'Oxygen', sans-serif;
-	color: #FFFFFF;
-	font-size: 16px;
-	border: none;
-	padding: 10px;
-	height: 50px;
-	width: 125px;
-	margin: 0 35px;
-}
  
 .paramsContainer, 
 .seqChannelNumber {
@@ -86,38 +122,8 @@ input[type=range][orient=vertical] {
 	margin-right: 20px;
 }
 
-#bpmForm {
-	display: inline;
-}
-
-h1#title {
-	text-align: center;
-	color: #FFFFFF;
-	margin: 0;
-	padding-top: 20px;
-	padding-bottom: 10px;
-}
-
-#controlContainer,
-h1#title {
-	background-color: #4F426F;
-}
-
-input[class="controlButton"]{
-	display: inline;
-	font-family: 'Oxygen', sans-serif;
-	color: #FFFFFF;
-	font-size: 16px;
-	border: none;
-	padding: 10px;
-	height: 50px;
-	width: 125px;
-	margin: 0 35px;
-}
-
-.channelButtonClicked {
-	background-color: yellow;
-	outline: none;
+#sequencer {
+	padding: 40px;
 }
 
 .seqContainer {
@@ -139,8 +145,4 @@ input[class="controlButton"]{
 
 .seqClicked {
 	background-color: red;
-}
- 
-button:focus {
-	outline: none;
 }

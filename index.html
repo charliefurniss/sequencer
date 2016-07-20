@@ -30,10 +30,18 @@
                         <input class="controlButton" type="submit" value="submit BPM"/>
                     </form>
                 </div> -->
-                <input type="button" class="controlButton" value="play" id="playButton"></button>
-                <input type="button" class="controlButton" value="stop" id="stopButton"></button>
-                <input type="button" class="controlButton" value="clear" id="clearButton"></button>
-                <input type="button" class="controlButton" value="loop off" id="loopButton"></button>
+                <div class="controlButtonContainer">
+                    <input type="image" class="controlButton" id="playButton" src="icons/play.png"></input>
+                </div>
+                <div class="controlButtonContainer">   
+                    <input type="image" class="controlButton" id="stopButton" src="icons/stop.png"></input>
+                </div>
+                <div class="controlButtonContainer">
+                    <input type="image" class="controlButton" id="clearButton" src="icons/delete.png"></input>
+                </div>
+                <div class="controlButtonContainer">
+                    <input type="image" class="controlButton" id="loopButton" src="icons/loop.png"></input>
+                </div>
             </div>
             <table id="channelsContainer">
                 <tr class="mixingDeskElementContainer" id="muteButtonsContainer"></tr>
