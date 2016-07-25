@@ -34,7 +34,7 @@ var Sequencer = function(context) {
 	}
 
 	function createChannelHTML(channel){
-		var seqContainerDiv = '<div class="seqContainer" id="channel' + channel.number + '"></div>';
+		var seqContainerDiv = '<div class="seqContainer"><div class="seqContent" id="channel' + channel.number + '"></div></div>';
 		
 		$('#sequencerChannels').append(seqContainerDiv);
 		var seqChannelNumber = '<h3 class="seqChannelNumber">' + channel.number + '</h3>';

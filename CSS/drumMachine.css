@@ -129,6 +129,7 @@ input[type=range][orient=vertical] {
 	border-top: 1px solid;
 	padding-top: 10px;
 	padding-bottom: 10px;
+	width: 100%;
 }
 
 .seqButton {
@@ -144,6 +145,11 @@ input[type=range][orient=vertical] {
 
 .seqClicked {
 	background-color: red;
+}
+
+.seqContent {
+	display: block;
+	margin: 0 auto;
 }
 
 .stopButtonContainerColour {

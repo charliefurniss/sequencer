@@ -9,6 +9,7 @@ $(document).ready(function() {
 	
 	var rhythm;
 	var config = new Config();
+	var control = new Control(config);
 
 	function init() {
 
@@ -40,32 +41,32 @@ $(document).ready(function() {
 		$('#playButton').click(function(){
 		  rhythm.play(bufferList, config, channelArray);
 		});
-		setUpLoopButton();
+		control.setUpLoopButton();
 		sequencer.setUpChannels(bufferList, config);
 		sequencer.registerSeqButtonClick();
 	}
 
-	function setUpLoopButton(){
-		$(function(){
-			$('#loopButton').click(function() {
-		    $(this).val() == "loop off" ? loopOn() : loopOff();
-		  });
-		});
-	}
+	// function setUpLoopButton(){
+	// 	$(function(){
+	// 		$('#loopButton').click(function() {
+	// 	    $(this).val() == "loop off" ? loopOn() : loopOff();
+	// 	  });
+	// 	});
+	// }
 
-	function loopOff() {
-		console.log("off");
-	  	$('#loopButton').val("loop off");
-	  	$('#loopButtonContainer').removeClass('controlButtonContainerClicked').addClass('loopButtonContainerColour');
-	  	config.loop = false;
-	}
+	// function loopOff() {
+	// 	console.log("off");
+	//   	$('#loopButton').val("loop off");
+	//   	$('#loopButtonContainer').removeClass('controlButtonContainerClicked').addClass('loopButtonContainerColour');
+	//   	config.loop = false;
+	// }
 
-	function loopOn() {
-		console.log("on");
-	  	$('#loopButton').val("loop on");
-	  	$('#loopButtonContainer').removeClass('loopButtonContainerColour').addClass('controlButtonContainerClicked');
-	  	config.loop = true;
-	} 
+	// function loopOn() {
+	// 	console.log("on");
+	//   	$('#loopButton').val("loop on");
+	//   	$('#loopButtonContainer').removeClass('loopButtonContainerColour').addClass('controlButtonContainerClicked');
+	//   	config.loop = true;
+	// } 
 
 });
 

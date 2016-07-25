@@ -1,6 +1,20 @@
 var Rhythm = function(context){
 
+  this.createButtonFlash = function(button){
+    console.log(button.id);
+    $('#' + button.id + 'Container')
+      .removeClass(button.id + 'ContainerColour')
+      .addClass('controlButtonContainerClicked');
+    setTimeout(function(){ 
+      $('#stopButtonContainer')
+        .addClass(button.id + 'ContainerColour')
+        .removeClass('controlButtonContainerClicked'); 
+    }, 1000);
+  }
+
   this.play = function(bufferList, config, channelArray) {
+
+    var createButtonFlash = this.createButtonFlash;
 
     function playSound(channelObject, time) {
       var source = context.createBufferSource();
@@ -81,17 +95,5 @@ var Rhythm = function(context){
     }
 
   };
-
-  function createButtonFlash(button){
-    console.log(button.id);
-    $('#' + button.id + 'Container')
-      .removeClass(button.id + 'ContainerColour')
-      .addClass('controlButtonContainerClicked');
-    setTimeout(function(){ 
-      $('#stopButtonContainer')
-        .addClass(button.id + 'ContainerColour')
-        .removeClass('controlButtonContainerClicked'); 
-    }, 1000);
-  }
 
 }
