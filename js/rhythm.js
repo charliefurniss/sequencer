@@ -1,37 +1,6 @@
-var Rhythm = function(context){
-
-  this.createButtonFlash = function(button){
-    console.log(button.id);
-    $('#' + button.id + 'Container')
-      .removeClass(button.id + 'ContainerColour')
-      .addClass('controlButtonContainerClicked');
-    setTimeout(function(){ 
-      $('#stopButtonContainer')
-        .addClass(button.id + 'ContainerColour')
-        .removeClass('controlButtonContainerClicked'); 
-    }, 1000);
-  }
+var Rhythm = function(context, buttonFX){
 
   this.play = function(bufferList, config, channelArray) {
-
-    var createButtonFlash = this.createButtonFlash;
-
-    function playSound(channelObject, time) {
-      var source = context.createBufferSource();
-      source.buffer = channelObject.instr;
-      var gainNode = context.createGain();
-      source.connect(gainNode);
-      gainNode.gain.value = channelObject.gain;
-      gainNode.connect(context.destination);
-
-      if (!source.start)
-        source.start = source.noteOn;
-      source.start(time);
-      $('#stopButton').click(function(){
-        source.stop(0);
-        createButtonFlash(this);
-      });
-    }
 
     var startTime = context.currentTime + 0.100;
 
@@ -92,6 +61,27 @@ var Rhythm = function(context){
         arrayToPlay = array;
       }
       return arrayToPlay;
+    }
+
+    function playSound(channelObject, time) {
+      var source = context.createBufferSource();
+      source.buffer = channelObject.instr;
+      var gainNode = context.createGain();
+      source.connect(gainNode);
+      gainNode.gain.value = channelObject.gain;
+      gainNode.connect(context.destination);
+
+      if (!source.start)
+        source.start = source.noteOn;
+      source.start(time);
+      stopSound(source);
+    }
+
+    function stopSound(source){
+      $('#stopButton').click(function(){
+        source.stop(0);
+        buttonFX.controlButtonFlash(this);
+      });
     }
 
   };

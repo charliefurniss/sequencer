@@ -9,6 +9,7 @@ $(document).ready(function() {
 	
 	var rhythm;
 	var config = new Config();
+	var buttonFX = new ButtonFX();
 	var control;
 
 	function init() {
@@ -16,7 +17,7 @@ $(document).ready(function() {
 		context	= new Context();
 		context = context.context;
 		sequencer = new Sequencer(context, config);
-		rhythm = new Rhythm(context);
+		rhythm = new Rhythm(context, buttonFX);
 		channelArray = sequencer.channelArray;
 		control = new Control(config, rhythm, channelArray);
 

@@ -1,10 +1,20 @@
 var Control = function(config, rhythm, channelArray){
 
+	this.registerPlayButtonClick = function(bufferList){
+		$('#playButton').click(function(){
+		  rhythm.play(bufferList, config, channelArray);
+		});
+	}
+
+	// this.registerStopButtonClick = function(){
+	// 	$('#stopButton').click(function(){
+	// 	  rhythm.stop();
+	// 	});
+	// }
+
 	this.registerLoopButtonClick = function(){
-		$(function(){
-			$('#loopButton').click(function() {
-		    $(this).val() == "loop off" ? loopOn() : loopOff();
-		  });
+		$('#loopButton').click(function() {
+			$(this).val() == "loop off" ? loopOn() : loopOff();
 		});
 	}
 
@@ -20,12 +30,6 @@ var Control = function(config, rhythm, channelArray){
 	  	$('#loopButton').val("loop on");
 	  	$('#loopButtonContainer').removeClass('loopButtonContainerColour').addClass('controlButtonContainerClicked');
 	  	config.loop = true;
-	}
-
-	this.registerPlayButtonClick = function(bufferList){
-		$('#playButton').click(function(){
-		  rhythm.play(bufferList, config, channelArray);
-		});
 	}
 
 }
