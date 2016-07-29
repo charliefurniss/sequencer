@@ -1,15 +1,13 @@
-var Solo = function(channelArray){
+var Solo = function(){
 
-	var soloBoolean;
+	this.checkForSolo = function(channelArray){
 
-	for (i = 0; i < channelArray.length; i++){
-        if (channelArray[i].solo){
-          soloBoolean = true;
-        } else {
-          soloBoolean = false;
-        }
-    }
+		for (i = 0; i < channelArray.length; i++){
+	        if (channelArray[i].solo){
+	          return true;
+	        }
+	    }
 
-    return soloBoolean;
+	}
 
 }

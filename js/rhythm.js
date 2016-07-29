@@ -15,11 +15,11 @@ var Rhythm = function(context, performance){
 
     for (var seq = 0; seq < loop; seq++) {
       var time = startTime + seq * config.seqLength * config.sixteenthNoteTime;
-      var soloBoolean = new Solo(channelArray);
+      var solo = new Solo();
+      var soloBoolean = solo.checkForSolo(channelArray);
+      console.log(soloBoolean);
       playArray(channelArray, time, config, soloBoolean);
     }
-
-    
 
     function playArray(array, time, config, soloBoolean){
 
