@@ -1,4 +1,4 @@
-var Rhythm = function(context, buttonFX){
+var Rhythm = function(context, performance){
 
   this.setUp = function(bufferList, config, channelArray) {
 
@@ -41,7 +41,7 @@ var Rhythm = function(context, buttonFX){
           } else {
             // play sound on steps with value of 1
             if (arrayToPlay[i].seqArray[step] == 1){
-              playSound(arrayToPlay[i], time + step * config.sixteenthNoteTime);
+              performance.playSound(context, arrayToPlay[i], time + step * config.sixteenthNoteTime);
             }
           }          
         }
@@ -61,27 +61,6 @@ var Rhythm = function(context, buttonFX){
         arrayToPlay = array;
       }
       return arrayToPlay;
-    }
-
-    function playSound(channelObject, time) {
-      var source = context.createBufferSource();
-      source.buffer = channelObject.instr;
-      var gainNode = context.createGain();
-      source.connect(gainNode);
-      gainNode.gain.value = channelObject.gain;
-      gainNode.connect(context.destination);
-
-      if (!source.start)
-        source.start = source.noteOn;
-      source.start(time);
-      stopSound(source);
-    }
-
-    function stopSound(source){
-      $('#stopButton').click(function(){
-        source.stop(0);
-        buttonFX.controlButtonFlash(this);
-      });
     }
 
   };
