@@ -32,10 +32,6 @@ button:focus {
 	position: relative;
 }
 
-.controlButtonContainerClicked {
-	background-color: red;
-}
-
 .controlButtonContainer {
 	display: inline-block;
 	height: 75px;
@@ -52,6 +48,10 @@ button:focus {
 
 .clearButtonContainerColour {
 	background-color: #77699A;
+}
+
+.clearButtonContainerActive {
+	background-color: red;
 }
 
 h1#title {
@@ -91,6 +91,10 @@ input[type=range][orient=vertical] {
 	background-color: #8A829C;
 }
 
+.loopButtonContainerActive {
+	background-color: yellow;
+}
+
 .muteButton, .soloButton {
 	width: 30px;
 	height: 30px;
@@ -115,6 +119,10 @@ input[type=range][orient=vertical] {
 
 .playButtonContainerColour {
 	background-color: #4F426F;
+}
+
+.playButtonContainerActive {
+	background-color: green;
 }
 
 .seqChannelNumber {
@@ -154,4 +162,8 @@ input[type=range][orient=vertical] {
 
 .stopButtonContainerColour {
 	background-color: #605380;
+}
+
+.stopButtonContainerActive {
+	background-color: red;
 }

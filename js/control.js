@@ -2,8 +2,10 @@ var Control = function(config, rhythm, channelArray){
 
 	this.registerPlayButtonClick = function(bufferList){
 		$('#playButton').click(function(){
-		  rhythm.setUp(bufferList, config, channelArray);
-		  $('#playButtonContainer').addClass('controlButtonContainerClicked').removeClass('playButtonContainerColour');
+			rhythm.setUp(bufferList, config, channelArray);
+		  	$('#playButtonContainer')
+				.addClass('playButtonContainerActive')
+				.removeClass('playButtonContainerColour');
 		});
 	}
 
@@ -23,13 +25,17 @@ var Control = function(config, rhythm, channelArray){
 
 	function loopOff() {
 	  	$('#loopButton').val("loop off");
-	  	$('#loopButtonContainer').removeClass('controlButtonContainerClicked').addClass('loopButtonContainerColour');
+	  	$('#loopButtonContainer')
+	  		.removeClass('loopButtonContainerActive')
+	  		.addClass('loopButtonContainerColour');
 	  	config.loop = false;
 	}
 
 	function loopOn() {
 	  	$('#loopButton').val("loop on");
-	  	$('#loopButtonContainer').removeClass('loopButtonContainerColour').addClass('controlButtonContainerClicked');
+	  	$('#loopButtonContainer')
+	  		.removeClass('loopButtonContainerColour')
+	  		.addClass('loopButtonContainerActive');
 	  	config.loop = true;
 	}
 

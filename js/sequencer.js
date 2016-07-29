@@ -1,4 +1,4 @@
-var Sequencer = function(context) {
+var Sequencer = function(context, buttonFX) {
 
 	var channelArray = [];
 
@@ -155,6 +155,8 @@ var Sequencer = function(context) {
 	function registerClearbuttonClick(channelArray){
 		//listen for click on clear button
 		$('#clearButton').on('click', function(){
+			//flash button
+			buttonFX.controlButtonFlash(this);
 			//iterate through all channels
 			for (i = 0; i < channelArray.length; i++){
 				//iterate through steps in relevant channel

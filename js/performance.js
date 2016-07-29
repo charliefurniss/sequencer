@@ -16,9 +16,12 @@ var Performance = function(buttonFX){
 
 	function stopSound(source){
 	  $('#stopButton').click(function(){
+	  	console.log("stopButton");
 	    source.stop(0);
 	    buttonFX.controlButtonFlash(this);
-	    $('#playButtonContainer').removeClass('controlButtonContainerClicked').addClass('playButtonContainerColour');
+	    $('#playButtonContainer')
+	    	.removeClass('playButtonContainerActive')
+	    	.addClass('playButtonContainerColour');
 	  });
 	}
 

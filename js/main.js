@@ -17,7 +17,7 @@ $(document).ready(function() {
 
 		context	= new Context();
 		context = context.context;
-		sequencer = new Sequencer(context, config);
+		sequencer = new Sequencer(context, buttonFX);
 		performance = new Performance(buttonFX);
 		rhythm = new Rhythm(context, performance);
 		channelArray = sequencer.channelArray;
