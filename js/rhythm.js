@@ -5,19 +5,13 @@ var Rhythm = function(context, performance){
     var startTime = context.currentTime + 0.100;
 
     //establish loop or not
-    var loop;
+    var loop = new Loop();
+    var loopLength = loop.checkLoop(config);
 
-    if (config.loop){
-      loop = 128;
-    } else {
-      loop = 1;
-    }
-
-    for (var seq = 0; seq < loop; seq++) {
+    for (var seq = 0; seq < loopLength; seq++) {
       var time = startTime + seq * config.seqLength * config.sixteenthNoteTime;
       var solo = new Solo();
       var soloBoolean = solo.checkForSolo(channelArray);
-      console.log(soloBoolean);
       playArray(channelArray, time, config, soloBoolean);
     }
 

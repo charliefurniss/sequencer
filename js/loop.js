@@ -1,13 +1,17 @@
-var Loop = function(config){
+var Loop = function(){
 
-	var loop;
+	this.checkLoop = function(config){
 
-	if (config.loop){
-	  loop = 128;
-	} else {
-	  loop = 1;
+		var loop;
+		
+		if (config.loop){
+		  loop = 128;
+		} else {
+		  loop = 1;
+		}
+
+		return loop;
+
 	}
-
-	return loop;
 
 }
