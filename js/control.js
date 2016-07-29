@@ -1,6 +1,6 @@
-var Control = function(config){
+var Control = function(config, rhythm, channelArray){
 
-	this.setUpLoopButton = function(){
+	this.registerLoopButtonClick = function(){
 		$(function(){
 			$('#loopButton').click(function() {
 		    $(this).val() == "loop off" ? loopOn() : loopOff();
@@ -20,6 +20,12 @@ var Control = function(config){
 	  	$('#loopButton').val("loop on");
 	  	$('#loopButtonContainer').removeClass('loopButtonContainerColour').addClass('controlButtonContainerClicked');
 	  	config.loop = true;
-	} 
+	}
+
+	this.registerPlayButtonClick = function(bufferList){
+		$('#playButton').click(function(){
+		  rhythm.play(bufferList, config, channelArray);
+		});
+	}
 
 }

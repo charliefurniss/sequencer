@@ -9,7 +9,7 @@ $(document).ready(function() {
 	
 	var rhythm;
 	var config = new Config();
-	var control = new Control(config);
+	var control;
 
 	function init() {
 
@@ -18,6 +18,7 @@ $(document).ready(function() {
 		sequencer = new Sequencer(context, config);
 		rhythm = new Rhythm(context);
 		channelArray = sequencer.channelArray;
+		control = new Control(config, rhythm, channelArray);
 
 	  bufferLoader = new BufferLoader(
 	    context,
@@ -38,35 +39,11 @@ $(document).ready(function() {
 	}
 
 	function setUp(bufferList){
-		$('#playButton').click(function(){
-		  rhythm.play(bufferList, config, channelArray);
-		});
-		control.setUpLoopButton();
 		sequencer.setUpChannels(bufferList, config);
 		sequencer.registerSeqButtonClick();
+		control.registerLoopButtonClick();
+		control.registerPlayButtonClick();
 	}
-
-	// function setUpLoopButton(){
-	// 	$(function(){
-	// 		$('#loopButton').click(function() {
-	// 	    $(this).val() == "loop off" ? loopOn() : loopOff();
-	// 	  });
-	// 	});
-	// }
-
-	// function loopOff() {
-	// 	console.log("off");
-	//   	$('#loopButton').val("loop off");
-	//   	$('#loopButtonContainer').removeClass('controlButtonContainerClicked').addClass('loopButtonContainerColour');
-	//   	config.loop = false;
-	// }
-
-	// function loopOn() {
-	// 	console.log("on");
-	//   	$('#loopButton').val("loop on");
-	//   	$('#loopButtonContainer').removeClass('loopButtonContainerColour').addClass('controlButtonContainerClicked');
-	//   	config.loop = true;
-	// } 
 
 });
 
