@@ -1,6 +1,6 @@
 var Rhythm = function(context, buttonFX){
 
-  this.play = function(bufferList, config, channelArray) {
+  this.setUp = function(bufferList, config, channelArray) {
 
     var startTime = context.currentTime + 0.100;
 
