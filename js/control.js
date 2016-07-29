@@ -3,8 +3,11 @@ var Control = function(config, rhythm, channelArray){
 	this.registerPlayButtonClick = function(bufferList){
 		$('#playButton').click(function(){
 		  rhythm.setUp(bufferList, config, channelArray);
+		  $('#playButtonContainer').addClass('controlButtonContainerClicked').removeClass('playButtonContainerColour');
 		});
 	}
+
+
 
 	// this.registerStopButtonClick = function(){
 	// 	$('#stopButton').click(function(){

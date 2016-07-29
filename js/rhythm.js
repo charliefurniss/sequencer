@@ -32,6 +32,7 @@ var Rhythm = function(context, performance){
           }          
         }
       }
+      
     }
 
     function createArrayToPlay(array){

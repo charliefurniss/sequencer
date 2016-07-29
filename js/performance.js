@@ -18,6 +18,7 @@ var Performance = function(buttonFX){
 	  $('#stopButton').click(function(){
 	    source.stop(0);
 	    buttonFX.controlButtonFlash(this);
+	    $('#playButtonContainer').removeClass('controlButtonContainerClicked').addClass('playButtonContainerColour');
 	  });
 	}
 
