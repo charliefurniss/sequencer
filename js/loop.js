@@ -5,7 +5,7 @@ var Loop = function(){
 		var loop;
 		
 		if (config.loop){
-		  loop = 128;
+		  loop = 32;
 		} else {
 		  loop = 1;
 		}

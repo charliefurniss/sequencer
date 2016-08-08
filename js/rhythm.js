@@ -20,6 +20,7 @@ var Rhythm = function(context, performance){
       var arrayToPlay = createArrayToPlay(array);
 
       for (i = 0; i < arrayToPlay.length; i++){
+        
         for (var step = 0; step < arrayToPlay[i].seqArray.length; step++){
           // mute channel if mute button is clicked
           if (arrayToPlay[i].mute){

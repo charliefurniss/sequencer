@@ -8,6 +8,7 @@ $(document).ready(function() {
 	var channelArray;	
 	
 	var rhythm;
+	var beat = new Beat();
 	var config = new Config();
 	var buttonFX = new ButtonFX();
 	var control;
@@ -15,11 +16,11 @@ $(document).ready(function() {
 
 	function init() {
 
+		performance = new Performance(buttonFX);
 		context	= new Context();
 		context = context.context;
-		sequencer = new Sequencer(context, buttonFX);
-		performance = new Performance(buttonFX);
 		rhythm = new Rhythm(context, performance);
+		sequencer = new Sequencer(context, buttonFX, beat);
 		channelArray = sequencer.channelArray;
 		control = new Control(config, rhythm, channelArray);
 

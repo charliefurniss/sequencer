@@ -1,4 +1,6 @@
-var Sequencer = function(context, buttonFX) {
+var Sequencer = function(context, buttonFX, beat) {
+
+	this.beat = beat;
 
 	var channelArray = [];
 
@@ -6,22 +8,30 @@ var Sequencer = function(context, buttonFX) {
 
 	this.setUpChannels = function(bufferList, config){
 
+		var seqArray = [];
+
 		for (i = 0; i < bufferList.length; i++){
 
-			//create sequence array based on config.seqLength variable
-			var emptySeqArray = [];
-			for (k = 0; k < config.seqLength; k++){
-				emptySeqArray.push(0);
+			if (beat.status) {
+				seqArray = this.beat.arrays[i];
+			} else {
+				seqArray = [];
+				//create sequence array based on config.seqLength variable
+				for (k = 0; k < config.seqLength; k++){
+					seqArray.push(0);
+				}
 			}
+			
 			//create channel
 			var channel = {
 				number: i + 1,
-				seqArray: emptySeqArray,
+				seqArray: seqArray,
 				instr: bufferList[i],
 				gain: 0.67,
 				solo: false,
 				mute: false
 			}
+
 			//push channel object into channelArray
 			channelArray.push(channel);
 			//using channel info to create HTML elements on page
@@ -34,6 +44,7 @@ var Sequencer = function(context, buttonFX) {
 	}
 
 	function createChannelHTML(channel){
+
 		var seqContainerDiv = '<div class="seqContainer"><div class="seqContent" id="channel' + channel.number + '"></div></div>';
 		
 		$('#sequencerChannels').append(seqContainerDiv);
@@ -42,7 +53,15 @@ var Sequencer = function(context, buttonFX) {
 
 		for (j = 0; j < channel.seqArray.length; j++){
 			var step = j + 1;
-			var button = '<button class="seqButton seqNotClicked" channel="' + channel.number + '" data="' + step + '" value="0" id="ch' + channel.number + '_st' + step + '"></button>';
+			var clickedClass = "";
+			
+			if (channel.seqArray[j] === 1) {
+				clickedClass = "seqClicked";
+			} else {
+				clickedClass = "seqNotClicked";
+			}
+			
+			var button = '<button class="seqButton ' + clickedClass + '" channel="' + channel.number + '" data="' + step + '" value="' + channel.seqArray[j] + '" id="ch' + channel.number + '_st' + step + '"></button>';
 			$('#channel' + channel.number).append(button);
 		}
 
@@ -76,13 +95,14 @@ var Sequencer = function(context, buttonFX) {
 	      var playBoolean = click.attr('value');
 	      var instr = channelArray[channel - 1].instr;
 
-	      $('#' + click.attr('id')).toggleClass("seqClicked");
 	      playSound(instr, 0);
 
 	      if (playBoolean == 1){
 	        $('#' + click.attr('id')).val(0);
+	        $('#' + click.attr('id')).removeClass("seqClicked").addClass("seqNotClicked");
 	      } else {
 	        $('#' + click.attr('id')).val(1);
+	        $('#' + click.attr('id')).addClass("seqClicked").removeClass("seqNotClicked");
 	      }
 
 	      if (channelArray[channel - 1].seqArray[step] == 0) {

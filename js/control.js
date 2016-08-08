@@ -9,8 +9,6 @@ var Control = function(config, rhythm, channelArray){
 		});
 	}
 
-
-
 	// this.registerStopButtonClick = function(){
 	// 	$('#stopButton').click(function(){
 	// 	  rhythm.stop();

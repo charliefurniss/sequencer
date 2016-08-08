@@ -1,8 +1,10 @@
 var Performance = function(buttonFX){
 
 	this.playSound = function(context, channelObject, time) {
+		
 	  var source = context.createBufferSource();
 	  source.buffer = channelObject.instr;
+	  
 	  var gainNode = context.createGain();
 	  source.connect(gainNode);
 	  gainNode.gain.value = channelObject.gain;
@@ -16,9 +18,10 @@ var Performance = function(buttonFX){
 
 	function stopSound(source){
 	  $('#stopButton').click(function(){
-	  	console.log("stopButton");
 	    source.stop(0);
+
 	    buttonFX.controlButtonFlash(this);
+	    
 	    $('#playButtonContainer')
 	    	.removeClass('playButtonContainerActive')
 	    	.addClass('playButtonContainerColour');
