@@ -113,8 +113,9 @@ input[type=range][orient=vertical] {
 }
  
 .paramsContainer, 
-.seqChannelNumber {
-	display: inline;
+.seqChannelName,
+.seqChannelNameContainer {
+	display: inline-block;
 }
 
 .playButtonContainerColour {
@@ -125,8 +126,17 @@ input[type=range][orient=vertical] {
 	background-color: green;
 }
 
-.seqChannelNumber {
+.seqButtonsContainer {
+	display: inline;
+	padding-bottom: 20px 
+}
+
+.seqChannelName {
 	margin-right: 20px;
+}
+
+.seqChannelNameContainer {
+	width: 140px;
 }
 
 #sequencer {

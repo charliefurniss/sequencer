@@ -49,8 +49,12 @@ var Sequencer = function(context, buttonFX, beat, instrumentation) {
 		var seqContainerDiv = '<div class="seqContainer"><div class="seqContent" id="channel' + channel.number + '"></div></div>';
 		
 		$('#sequencerChannels').append(seqContainerDiv);
-		var seqChannelTitle = '<h3 class="seqChannelNumber">' + channel.number + ' ' + channel.name + '</h3>';
-		$('#channel' + channel.number).append(seqChannelTitle);
+		var seqChannelName = '<div class="seqChannelNameContainer"><h4 class="seqChannelName">' + channel.number + ' ' + channel.name + '</h4></div>';
+		$('#channel' + channel.number).append(seqChannelName);
+
+		var seqButtonsContainer ='<div class="seqButtonsContainer" id="seqButtonsContainer_' + channel.number + '"></div>';
+		$('#channel' + channel.number).append(seqButtonsContainer);
+
 
 		for (j = 0; j < channel.seqArray.length; j++){
 			var step = j + 1;
@@ -63,7 +67,7 @@ var Sequencer = function(context, buttonFX, beat, instrumentation) {
 			}
 			
 			var button = '<button class="seqButton ' + clickedClass + '" channel="' + channel.number + '" data="' + step + '" value="' + channel.seqArray[j] + '" id="ch' + channel.number + '_st' + step + '"></button>';
-			$('#channel' + channel.number).append(button);
+			$('#seqButtonsContainer_' + channel.number).append(button);
 		}
 
 		var muteButton = '<td class="channel"><input type="button" class="channelElement muteButton" channel="' + channel.number + '" data=' + channel.mute + ' value="M"  id="ch' + channel.number + '_mute"></button></td>';
