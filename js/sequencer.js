@@ -1,4 +1,4 @@
-var Sequencer = function(context, buttonFX, beat) {
+var Sequencer = function(context, buttonFX, beat, instrumentation) {
 
 	this.beat = beat;
 
@@ -25,7 +25,7 @@ var Sequencer = function(context, buttonFX, beat) {
 			//create channel
 			var channel = {
 				number: i + 1,
-				name: "",
+				name: instrumentation.nameArray[i],
 				seqArray: seqArray,
 				instr: bufferList[i],
 				gain: 0.67,
@@ -49,8 +49,8 @@ var Sequencer = function(context, buttonFX, beat) {
 		var seqContainerDiv = '<div class="seqContainer"><div class="seqContent" id="channel' + channel.number + '"></div></div>';
 		
 		$('#sequencerChannels').append(seqContainerDiv);
-		var seqChannelNumber = '<h3 class="seqChannelNumber">' + channel.number + '</h3>';
-		$('#channel' + channel.number).append(seqChannelNumber);
+		var seqChannelTitle = '<h3 class="seqChannelNumber">' + channel.number + ' ' + channel.name + '</h3>';
+		$('#channel' + channel.number).append(seqChannelTitle);
 
 		for (j = 0; j < channel.seqArray.length; j++){
 			var step = j + 1;
