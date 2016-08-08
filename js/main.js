@@ -5,12 +5,14 @@ $(document).ready(function() {
 	var context;
 	var bufferLoader;
 	var sequencer;
-	var channelArray;	
+	var channelArray;
+	var bufferArray;
 	
 	var rhythm;
 	var beat = new Beat();
 	var config = new Config();
 	var buttonFX = new ButtonFX();
+	var instrumentation = new Instrumentation();
 	var control;
 	var performance;
 
@@ -20,23 +22,14 @@ $(document).ready(function() {
 		context	= new Context();
 		context = context.context;
 		rhythm = new Rhythm(context, performance);
-		sequencer = new Sequencer(context, buttonFX, beat);
+		sequencer = new Sequencer(context, buttonFX, beat, instrumentation);
 		channelArray = sequencer.channelArray;
 		control = new Control(config, rhythm, channelArray);
 
 		bufferLoader = new BufferLoader(
-		context,
-		[
-		  'audio/Kick909.wav',
-		  'audio/Snare909.wav',
-		  'audio/MA808.wav',
-		  'audio/TomSim1.wav',
-		  'audio/TomSim2.wav',
-		  'audio/TomSim3.wav',
-		  'audio/Clave808.wav',
-		  'audio/ClapDtrax15.wav'
-		],
-		setUp
+			context,
+			instrumentation.bufferArray,
+			setUp
 		);
 
 		bufferLoader.load();

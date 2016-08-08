@@ -25,6 +25,7 @@ var Sequencer = function(context, buttonFX, beat) {
 			//create channel
 			var channel = {
 				number: i + 1,
+				name: "",
 				seqArray: seqArray,
 				instr: bufferList[i],
 				gain: 0.67,
